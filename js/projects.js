@@ -5,7 +5,7 @@ const projects = [
 
   // Photography
   { title: "Antradienis", type: "photo", thumbnail: "assets/images/antradienis/antradienis1.png", link: "assets/images/antradienis/antradienis1.png" },
-  { title: "Photo Series 2", type: "photo", thumbnail: "assets/images/photo2.jpg", link: "assets/images/photo2.jpg" },
+  { title: "Laukiniai", type: "photo", thumbnail: "assets/images/laukiniai/laukiniai1.png", link: "assets/images/laukiniai/laukiniai1.png" },
 
   // Drawings & Paintings
   { title: "Sketch 1", type: "drawing", thumbnail: "assets/images/drawing1.jpg", link: "assets/images/drawing1.jpg" },
