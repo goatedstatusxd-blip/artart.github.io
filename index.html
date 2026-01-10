@@ -4,41 +4,41 @@
   <meta charset="UTF-8">
   <title>Aura Vilkisiute Portfolio</title>
 
-  <!-- Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
-
-  <!-- Custom CSS -->
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-<!-- Banner -->
-<div class="container-fluid p-0 d-flex justify-content-center align-items-center" style="height:300px;">
-  <img src="assets/images/banner.png"
-       alt="Portfolio Banner"
-       style="max-height:100%; max-width:80%; object-fit:contain;">
+<!-- Hero -->
+<div class="hero">
+  <img src="assets/images/banner.png" alt="Portfolio banner">
 </div>
 
 <!-- Projects -->
 <div class="container py-5">
+  <h2 class="section-title">Selected Projects</h2>
   <div class="row g-4" id="projects"></div>
+
+  <div class="text-center mt-5">
+    <a href="gallery.html" class="btn btn-outline-dark rounded-pill px-4">
+      View Full Gallery
+    </a>
+  </div>
 </div>
 
-<!-- Projects data -->
 <script src="js/projects.js"></script>
-
 <script>
   const container = document.getElementById("projects");
 
-  projects.forEach(project => {
+  projects.forEach(p => {
     container.innerHTML += `
       <div class="col-md-4">
         <div class="card h-100">
-          <a href="${project.link}">
-            <img src="${project.image}" class="card-img-top" alt="${project.title}">
+          <a href="${p.link}">
+            <img src="${p.image}" class="card-img-top" alt="${p.title}">
           </a>
           <div class="card-body text-center">
-            <h5>${project.title}</h5>
+            <h5 class="card-title">${p.title}</h5>
           </div>
         </div>
       </div>
