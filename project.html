@@ -2,32 +2,36 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Project</title>
+  <title>Example Project</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-<header>
-  <nav>
-    <a href="work.html">← Back</a>
-  </nav>
-</header>
+<nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">Artist Name</a>
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="work.html">Work</a></li>
+        <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
 
-<h2 style="padding:24px;">Project Title</h2>
+<div class="container py-4">
+  <h2>Example Project</h2>
 
-<div style="padding:24px;">
-  <!-- VIDEO -->
-  <iframe
-    width="100%"
-    height="500"
-    src="https://www.youtube.com/embed/VIDEO_ID"
-    allowfullscreen>
-  </iframe>
+  <!-- Video (optional) -->
+  <div class="ratio ratio-16x9 my-3">
+    <iframe src="https://www.youtube.com/embed/VIDEO_ID" allowfullscreen></iframe>
+  </div>
 
-  <!-- IMAGE -->
-  <!-- <img src="assets/images/example.jpg" style="width:100%;"> -->
+  <!-- Image -->
+  <img src="assets/images/example.jpg" class="img-fluid my-3" alt="Example Project">
 
-  <p>Description of the project.</p>
+  <p>Description of the project goes here. Add details about your work, technique, or story.</p>
 </div>
 
 </body>
