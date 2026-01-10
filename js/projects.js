@@ -5,5 +5,5 @@ const projects = [
   { title: "Laukiniai", type: "photo", thumbnail: "assets/images/laukiniai/laukiniai1.png", link: "assets/images/laukiniai/laukiniai1.png" },
   { title: "Sketch 1", type: "drawing", thumbnail: "assets/images/drawing1.jpg", link: "assets/images/drawing1.jpg" },
   { title: "Painting 1", type: "drawing", thumbnail: "assets/images/drawing2.jpg", link: "assets/images/drawing2.jpg" },
-  // add more projects here
+  // Add more projects here
 ];
