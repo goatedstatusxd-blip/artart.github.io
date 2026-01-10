@@ -27,17 +27,24 @@ body {
 .portfolio-nav {
   display: flex;
   justify-content: center;
-  gap: 40px;
-  margin: 30px 0 50px;
+  gap: 20px;            /* smaller gap between links */
+  margin: 20px 0 40px;  /* smaller top/bottom spacing */
 }
 
 .portfolio-nav a {
   text-decoration: none;
   color: #111;
-  font-size: 0.95rem;
-  font-weight: 500;
+  font-size: 1rem;      /* base size */
+  font-weight: 600;
   position: relative;
 }
+
+/* Make "Projektai" larger */
+.portfolio-nav a:first-child {
+  font-size: 1.2rem;    /* larger than other links */
+  font-weight: 700;
+}
+
 
 .portfolio-nav a::after {
   content: "";
