@@ -8,19 +8,9 @@
 </head>
 <body>
 
-<!-- Alternative modern side graphics -->
-<div class="side-graphic shape1"></div>
-<div class="side-graphic shape2"></div>
-<div class="side-graphic shape3"></div>
-<div class="side-graphic shape4"></div>
-
-<!-- Hero -->
+<!-- Hero Banner -->
 <div class="hero">
   <img src="assets/images/banner.png" alt="Portfolio Banner">
-  <div class="hero-overlay">
-    <h1>Aura Vilkisiute</h1>
-    <p>Film, Photography & Drawings</p>
-  </div>
 </div>
 
 <!-- Navigation -->
@@ -57,94 +47,86 @@
 
 <script src="js/projects.js"></script>
 <script>
-  const grid = document.getElementById("projects-grid");
+const grid = document.getElementById("projects-grid");
 
-  function createCard(project) {
-    return `
-      <div class="project-item" data-type="${project.type}">
-        <img src="${project.thumbnail}" alt="${project.title}" data-link="${project.link}" data-type="${project.type}">
-        <div class="project-title">${project.title}</div>
-      </div>
-    `;
-  }
+// Create project cards
+function createCard(project) {
+  return `
+    <div class="project-item" data-type="${project.type}">
+      <img src="${project.thumbnail}" alt="${project.title}" data-link="${project.link}" data-type="${project.type}">
+      <div class="project-title">${project.title}</div>
+    </div>
+  `;
+}
 
-  projects.forEach(p => grid.innerHTML += createCard(p));
+projects.forEach(p => grid.innerHTML += createCard(p));
 
-  // Filtering
-  document.querySelectorAll('.filter-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      const type = btn.dataset.type;
-      document.querySelectorAll('.project-item').forEach(item => {
-        if (type === "all" || item.dataset.type === type) {
-          item.style.display = "block";
-          setTimeout(()=>item.classList.add('visible'), 10);
-        } else {
-          item.style.display = "none";
-          item.classList.remove('visible');
-        }
-      });
-    });
-  });
-
-  // Reveal filter buttons on scroll
-  const filters = document.querySelector('.filter-buttons');
-  window.addEventListener('scroll', () => {
-    if (filters.getBoundingClientRect().top < window.innerHeight - 50) {
-      filters.classList.add('visible');
-    }
-  });
-
-  // Fade-in projects
-  function reveal() {
+// Filter functionality
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const type = btn.dataset.type;
     document.querySelectorAll('.project-item').forEach(item => {
-      const rect = item.getBoundingClientRect();
-      if (rect.top < window.innerHeight - 50) item.classList.add('visible');
-    });
-  }
-  window.addEventListener('scroll', reveal);
-  window.addEventListener('load', reveal);
-
-  // Lightbox
-  const lightbox = document.getElementById("lightbox");
-  const lbVideo = document.getElementById("lightbox-video");
-  const lbIframe = document.getElementById("lightbox-iframe");
-  const lbImage = document.getElementById("lightbox-image");
-  const closeBtn = lightbox.querySelector(".close");
-
-  document.querySelectorAll('.project-item img').forEach(img => {
-    img.addEventListener('click', () => {
-      const type = img.dataset.type;
-      const link = img.dataset.link;
-
-      lbVideo.style.display = "none";
-      lbIframe.style.display = "none";
-      lbImage.style.display = "none";
-
-      if (type === "video") {
-        if (link.includes("youtube") || link.includes("vimeo") || link.includes("drive.google.com")) {
-          lbIframe.src = link;
-          lbIframe.style.display = "block";
-        } else {
-          lbVideo.src = link;
-          lbVideo.style.display = "block";
-        }
+      if (type === "all" || item.dataset.type === type) {
+        item.style.display = "block";
+        setTimeout(()=>item.classList.add('visible'), 10);
       } else {
-        lbImage.src = link;
-        lbImage.style.display = "block";
+        item.style.display = "none";
+        item.classList.remove('visible');
       }
-
-      lightbox.style.display = "flex";
     });
   });
+});
 
-  closeBtn.addEventListener('click', () => {
-    lightbox.style.display = "none";
-    lbVideo.pause();
-    lbIframe.src = "";
+// Fade-in projects
+function reveal() {
+  document.querySelectorAll('.project-item').forEach(item => {
+    const rect = item.getBoundingClientRect();
+    if (rect.top < window.innerHeight - 50) item.classList.add('visible');
   });
-</script>
+}
+window.addEventListener('scroll', reveal);
+window.addEventListener('load', reveal);
 
+// Lightbox
+const lightbox = document.getElementById("lightbox");
+const lbVideo = document.getElementById("lightbox-video");
+const lbIframe = document.getElementById("lightbox-iframe");
+const lbImage = document.getElementById("lightbox-image");
+const closeBtn = lightbox.querySelector(".close");
+
+document.querySelectorAll('.project-item img').forEach(img => {
+  img.addEventListener('click', () => {
+    const type = img.dataset.type;
+    const link = img.dataset.link;
+
+    lbVideo.style.display = "none";
+    lbIframe.style.display = "none";
+    lbImage.style.display = "none";
+
+    if (type === "video") {
+      if (link.includes("youtube") || link.includes("vimeo") || link.includes("drive.google.com")) {
+        lbIframe.src = link;
+        lbIframe.style.display = "block";
+      } else {
+        lbVideo.src = link;
+        lbVideo.style.display = "block";
+      }
+    } else {
+      lbImage.src = link;
+      lbImage.style.display = "block";
+    }
+
+    lightbox.style.display = "flex";
+  });
+});
+
+closeBtn.addEventListener('click', () => {
+  lightbox.style.display = "none";
+  lbVideo.pause();
+  lbIframe.src = "";
+});
+</script>
 </body>
 </html>
