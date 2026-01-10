@@ -82,30 +82,25 @@ body {
 }
 
 .project-title {
-  display: flex;                  /* allows easy stretching */
-  align-items: center;            /* vertically center text */
-  justify-content: center;        /* horizontally center text */
-  text-align: center;             /* fallback */
-  font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif; /* modern sans-serif */
-  font-size: 1.05rem;             /* slightly larger */
-  font-weight: 600;               /* modern semi-bold look */
-  color: #800020;                 /* burgundy */
-  text-transform: uppercase;      /* all caps */
-  width: 100%;                    /* match image width */
-  height: 60px;                   /* taller block under image */
-  box-sizing: border-box;         /* padding included in height */
-  letter-spacing: 1.5px;          /* modern spaced letters */
-  padding: 10px;                  /* vertical breathing room */
-  transition: color 0.3s ease;    /* hover effect */
+  display: flex;                      /* stretch container */
+  align-items: center;                /* vertical center */
+  justify-content: center;            /* horizontal center */
+  text-align: center;                 /* fallback */
+  font-family: "Helvetica", "Arial", sans-serif;
+  font-weight: bold;                  /* Helvetica Bold */
+  font-size: 1.3rem;                  /* bigger text */
+  color: #D61A21;                     /* red color */
+  text-transform: uppercase;          /* all caps */
+  width: 100%;                        /* same width as image */
+  height: 70px;                        /* taller block under image */
+  box-sizing: border-box;             /* include padding in height */
+  letter-spacing: 1.5px;              /* spaced letters for modern look */
+  padding: 10px;                      /* breathing room */
+  transition: color 0.3s ease;        /* smooth hover */
 }
 
 .project-item:hover .project-title {
-  color: #a00030;                 /* darker burgundy on hover */
-}
-
-
-.project-item:hover .project-title {
-  color: darkred;               /* Optional: hover effect */
+  color: #B0171C;                     /* darker red on hover */
 }
 
 
