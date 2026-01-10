@@ -5,6 +5,11 @@ const projects = [
     link: "project1.html"
   },
   {
+    title: "Antradienis",
+    image: "assets/images/antradienis/antradienis1.png",
+    link: "project1.html"
+  },
+  {
     title: "Radio",
     image: "assets/images/radio/radio1.png",
     link: "project2.html"
