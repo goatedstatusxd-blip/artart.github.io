@@ -8,40 +8,41 @@
 </head>
 <body>
 
-<!-- Banner -->
-<div class="container-fluid p-0 d-flex justify-content-center align-items-center banner-container">
-  <img src="assets/images/banner.png" class="img-fluid" style="max-height:400px; object-fit:cover;" alt="Portfolio Banner">
-</div>
-
-<!-- Top left navigation -->
+<!-- Vertical Navigation -->
 <div class="top-nav">
-  <a href="index.html">Projektai</a>
-  <a href="index.html#gallery">Galerija</a>
-  <a href="index.html#about">Apie Mane</a>
+  <a href="#hero">Home</a>
+  <a href="#projects">Projects</a>
+  <a href="#gallery">Gallery</a>
+  <a href="#about">About</a>
 </div>
 
-<!-- Projects -->
-<div class="container py-4" id="projects-container">
-  <div class="row g-4">
-    <div class="col-md-3 project-item" onclick="window.location.href='project.html?project=Kur Sea Vai'">
-      <img src="assets/images/kur sea vai/kadrai1.png" class="img-fluid" alt="Kur Sea Vai">
-      <div class="overlay">Kur Sea Vai</div>
-    </div>
-    <div class="col-md-3 project-item" onclick="window.location.href='project.html?project=Radio'">
-      <img src="assets/images/radio/radio1.png" class="img-fluid" alt="Radio">
-      <div class="overlay">Radio</div>
-    </div>
-    <div class="col-md-3 project-item" onclick="window.location.href='project.html?project=Antradienis'">
-      <img src="assets/images/antradienis/antradienis1.png" class="img-fluid" alt="Antradienis">
-      <div class="overlay">Antradienis</div>
-    </div>
-    <div class="col-md-3 project-item" onclick="window.location.href='project.html?project=Painting 1'">
-      <img src="assets/images/drawing2.jpg" class="img-fluid" alt="Painting 1">
-      <div class="overlay">Painting 1</div>
-    </div>
-    <!-- Add more projects here -->
-  </div>
+<div class="container-fluid">
+  <!-- Hero Banner -->
+  <section id="hero" class="hero mb-4">
+    <img src="assets/images/banner.png" alt="Portfolio Banner">
+  </section>
+
+  <!-- Projects Grid -->
+  <section id="projects" class="project-grid"></section>
 </div>
 
+<script src="js/projects.js"></script>
+<script>
+const grid = document.querySelector(".project-grid");
+
+function createCard(project) {
+  const projectURL = `project.html?project=${encodeURIComponent(project.title)}`;
+  return `
+    <div class="project-item">
+      <a href="${projectURL}">
+        <img src="${project.thumbnail}" alt="${project.title}">
+        <div class="project-overlay"><span>${project.title}</span></div>
+      </a>
+    </div>
+  `;
+}
+
+projects.forEach(p => grid.innerHTML += createCard(p));
+</script>
 </body>
 </html>
