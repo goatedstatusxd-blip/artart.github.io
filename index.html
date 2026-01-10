@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Auros Vilkisiutes Portfolio</title>
+  <title>Aura Vilkisiute Portfolio</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
@@ -14,23 +14,23 @@
 <div class="side-graphic shape3"></div>
 <div class="side-graphic shape4"></div>
 
-<!-- Banner -->
+<!-- Hero -->
 <div class="hero">
   <img src="assets/images/banner.png" alt="Portfolio Banner">
   <div class="hero-overlay">
+    <h1>Aura Vilkisiute</h1>
+    <p>Film, Photography & Drawings</p>
   </div>
 </div>
 
-
 <!-- Navigation -->
 <nav class="portfolio-nav">
-  <a href="#projects" class="nav-main">Projektai</a>
+  <a href="#projects">Projektai</a>
   <a href="#gallery">Galerija</a>
   <a href="#about">Apie Mane</a>
 </nav>
 
-
-<!-- Projects Grid -->
+<!-- Projects Section -->
 <div class="container py-5" id="projects">
 
   <!-- Filter Buttons -->
@@ -41,10 +41,9 @@
     <button class="filter-btn" data-type="drawing">Drawings</button>
   </div>
 
-  <!-- Projects Grid -->
+  <!-- Project Grid -->
   <div class="project-grid" id="projects-grid"></div>
 </div>
-
 
 <!-- Lightbox Modal -->
 <div id="lightbox" class="lightbox">
@@ -89,7 +88,15 @@
     });
   });
 
-  // Fade-in scroll
+  // Reveal filter buttons on scroll
+  const filters = document.querySelector('.filter-buttons');
+  window.addEventListener('scroll', () => {
+    if (filters.getBoundingClientRect().top < window.innerHeight - 50) {
+      filters.classList.add('visible');
+    }
+  });
+
+  // Fade-in projects
   function reveal() {
     document.querySelectorAll('.project-item').forEach(item => {
       const rect = item.getBoundingClientRect();
@@ -116,7 +123,7 @@
       lbImage.style.display = "none";
 
       if (type === "video") {
-        if (link.includes("youtube") || link.includes("vimeo")) {
+        if (link.includes("youtube") || link.includes("vimeo") || link.includes("drive.google.com")) {
           lbIframe.src = link;
           lbIframe.style.display = "block";
         } else {
@@ -138,5 +145,6 @@
     lbIframe.src = "";
   });
 </script>
+
 </body>
 </html>
