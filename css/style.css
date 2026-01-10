@@ -1,17 +1,82 @@
+/* Reset & base */
 body {
-  font-family: Arial, Helvetica, sans-serif;
-  background-color: #f8f9fa; /* light gray background */
+  font-family: "Inter", system-ui, sans-serif;
+  background-color: #fafafa;
+  color: #111;
+}
+
+/* Banner */
+.hero {
+  height: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero img {
+  max-height: 100%;
+  max-width: 75%;
+  object-fit: contain;
+}
+
+/* Section titles */
+.section-title {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+/* Cards */
+.card {
+  border: none;
+  border-radius: 16px;
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.card img {
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.12);
 }
 
 .card-title {
-  font-weight: bold;
-  text-align: center;
+  font-size: 1rem;
+  font-weight: 500;
 }
 
-h1, h2 {
-  text-align: center;
+/* Gallery */
+.gallery-grid {
+  column-count: 3;
+  column-gap: 1.2rem;
 }
 
-img {
-  border-radius: 4px;
+.gallery-grid img {
+  width: 100%;
+  margin-bottom: 1.2rem;
+  border-radius: 12px;
+  break-inside: avoid;
+  transition: transform 0.3s ease;
+}
+
+.gallery-grid img:hover {
+  transform: scale(1.02);
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .gallery-grid {
+    column-count: 2;
+  }
+}
+
+@media (max-width: 576px) {
+  .gallery-grid {
+    column-count: 1;
+  }
 }
