@@ -1,17 +1,13 @@
 const projects = [
-  {
-    title: "Kur Sea Vai",
-    image: "assets/images/kur sea vai/kadrai1.png",
-    link: "project1.html"
-  },
-  {
-    title: "Antradienis",
-    image: "assets/images/antradienis/antradienis1.png",
-    link: "project2.html"
-  },
-  {
-    title: "Radio",
-    image: "assets/images/radio/radio1.png",
-    link: "project3.html"
-  }
+  // Videos
+  { title: "Kur Sea Vai", type: "video", thumbnail: "assets/images/kur sea vai/kadrai1.png", link: "assets/videos/video1.mp4" },
+  { title: "Radio", type: "video", thumbnail: "assets/images/radio/radio1.png", link: "assets/videos/video2.mp4" },
+
+  // Photography
+  { title: "Antradienis", type: "photo", thumbnail: "assets/images/antradienis/antradienis1.png", link: "assets/images/photo1.jpg" },
+  { title: "Photo Series 2", type: "photo", thumbnail: "assets/images/photo2.jpg", link: "assets/images/photo2.jpg" },
+
+  // Drawings & Paintings
+  { title: "Sketch 1", type: "drawing", thumbnail: "assets/images/drawing1.jpg", link: "assets/images/drawing1.jpg" },
+  { title: "Painting 1", type: "drawing", thumbnail: "assets/images/drawing2.jpg", link: "assets/images/drawing2.jpg" },
 ];
