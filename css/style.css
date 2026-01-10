@@ -30,61 +30,55 @@ body {
   padding: 20px;
 }
 
-/* Responsive: 3 per row on medium, 2 on small, 1 on extra small */
-@media (max-width: 1200px) {
-  .project-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-@media (max-width: 900px) {
-  .project-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-@media (max-width: 600px) {
-  .project-grid {
-    grid-template-columns: 1fr;
-  }
-}
+/* Responsive grid */
+@media (max-width: 1200px) { .project-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 900px)  { .project-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px)  { .project-grid { grid-template-columns: 1fr; } }
 
-/* Each project item same size */
+/* Project Item */
 .project-item {
-  position: relative;
   width: 100%;
-  aspect-ratio: 1 / 1; /* square items */
+  aspect-ratio: 1 / 1; /* square */
   overflow: hidden;
   cursor: pointer;
+  position: relative;
 }
 
-.project-item img {
+.project-inner {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* maintain full coverage */
+  position: relative;
+}
+
+.project-inner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* fill container */
   display: block;
   transition: transform 0.3s ease, filter 0.3s ease;
 }
 
-.project-item:hover img {
+.project-inner:hover img {
   transform: scale(1.05);
   filter: brightness(0.8);
 }
 
-/* Hover overlay with project title */
+/* Hover overlay same size as image */
 .project-overlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
+  background: rgba(0,0,0,0.5);
   display: flex;
   justify-content: center;
   align-items: center;
   opacity: 0;
-  background: rgba(0,0,0,0.5);
   transition: opacity 0.3s ease;
 }
 
-.project-item:hover .project-overlay {
+.project-inner:hover .project-overlay {
   opacity: 1;
 }
 
