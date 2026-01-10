@@ -8,32 +8,47 @@
 </head>
 <body>
 
-<div class="container py-5">
+<div class="container-fluid">
+  <div class="row">
 
-  <div class="row g-4 align-items-start">
-    <!-- Left: Large image/video -->
-    <div class="col-md-6">
-      <div id="project-media"></div>
-    </div>
+    <!-- Vertical Navigation -->
+    <nav class="col-md-2 d-none d-md-block nav-vertical">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#projects">Projects</a></li>
+        <li><a href="index.html#gallery">Gallery</a></li>
+        <li><a href="index.html#about">About</a></li>
+      </ul>
+    </nav>
 
-    <!-- Right: Info -->
-    <div class="col-md-6">
+    <!-- Main Content -->
+    <main class="col-md-10 content-area">
+      <div id="project-media" class="project-media mb-4"></div>
       <h1 id="project-title"></h1>
       <p id="project-description"></p>
 
       <h3>Gallery</h3>
-      <div id="project-gallery" class="row g-2"></div>
-    </div>
-  </div>
+      <div id="project-gallery" class="gallery-grid"></div>
+    </main>
 
+  </div>
+</div>
+
+<!-- Lightbox -->
+<div id="lightbox" class="lightbox">
+  <span class="close">&times;</span>
+  <div id="lightbox-content">
+    <video id="lightbox-video" controls></video>
+    <iframe id="lightbox-iframe" frameborder="0" allowfullscreen></iframe>
+    <img id="lightbox-image" alt="">
+  </div>
 </div>
 
 <script src="js/project-data.js"></script>
 <script>
-  // Get project from URL parameter, e.g., ?project=Kur%20Sea%20Vai
+  // Get project from URL parameter
   const params = new URLSearchParams(window.location.search);
   const projectName = params.get('project');
-
   const project = projects.find(p => p.title === projectName);
 
   if (!project) {
@@ -58,23 +73,51 @@
       mediaContainer.innerHTML = `<img src="${project.link}" width="100%" height="480" style="object-fit:cover;">`;
     }
 
-    // Gallery (other thumbnails for this project)
+    // Gallery
     if (project.gallery && project.gallery.length > 0) {
       project.gallery.forEach(item => {
         const col = document.createElement('div');
-        col.className = "col-4 col-sm-3 col-md-4";
+        col.className = "gallery-item";
         let mediaHTML = '';
         if (item.type === "video") {
-          mediaHTML = `<iframe src="${item.link}" width="100%" height="120" frameborder="0" allowfullscreen></iframe>`;
+          mediaHTML = `<iframe src="${item.link}" frameborder="0" allowfullscreen></iframe>`;
         } else {
-          mediaHTML = `<img src="${item.link}" width="100%" height="120" style="object-fit:cover;">`;
+          mediaHTML = `<img src="${item.link}" alt="${project.title}">`;
         }
         col.innerHTML = mediaHTML;
         galleryEl.appendChild(col);
+
+        // Clickable lightbox
+        col.addEventListener('click', () => {
+          document.getElementById("lightbox-video").style.display = "none";
+          document.getElementById("lightbox-iframe").style.display = "none";
+          document.getElementById("lightbox-image").style.display = "none";
+
+          if(item.type === "video") {
+            if (item.link.includes("youtube") || item.link.includes("drive.google.com")) {
+              document.getElementById("lightbox-iframe").src = item.link;
+              document.getElementById("lightbox-iframe").style.display = "block";
+            } else {
+              document.getElementById("lightbox-video").src = item.link;
+              document.getElementById("lightbox-video").style.display = "block";
+            }
+          } else {
+            document.getElementById("lightbox-image").src = item.link;
+            document.getElementById("lightbox-image").style.display = "block";
+          }
+          document.getElementById("lightbox").style.display = "flex";
+        });
       });
     }
   }
-</script>
 
+  // Lightbox close
+  const lightbox = document.getElementById("lightbox");
+  lightbox.querySelector(".close").addEventListener('click', () => {
+    lightbox.style.display = "none";
+    document.getElementById("lightbox-video").pause();
+    document.getElementById("lightbox-iframe").src = "";
+  });
+</script>
 </body>
 </html>
