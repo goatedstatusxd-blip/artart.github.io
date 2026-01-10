@@ -82,25 +82,25 @@ body {
 }
 
 .project-title {
-  display: flex;                      /* stretch container */
-  align-items: center;                /* vertical center */
-  justify-content: center;            /* horizontal center */
-  text-align: center;                 /* fallback */
+  display: flex;                      
+  align-items: center;                
+  justify-content: center;            
+  text-align: center;                 
   font-family: "Helvetica", "Arial", sans-serif;
-  font-weight: bold;                  /* Helvetica Bold */
+  font-weight: bold;                  
   font-size: 1.3rem;                  /* bigger text */
-  color: #D61A21;                     /* red color */
-  text-transform: uppercase;          /* all caps */
-  width: 100%;                        /* same width as image */
-  height: 70px;                        /* taller block under image */
-  box-sizing: border-box;             /* include padding in height */
-  letter-spacing: 1.5px;              /* spaced letters for modern look */
-  padding: 10px;                      /* breathing room */
-  transition: color 0.3s ease;        /* smooth hover */
+  color: #000000;                     /* black text */
+  text-transform: uppercase;          
+  width: 100%;                        
+  height: 70px;                       
+  box-sizing: border-box;             
+  letter-spacing: 1.5px;              
+  padding: 10px;                      
+  transition: color 0.3s ease;        
 }
 
 .project-item:hover .project-title {
-  color: #B0171C;                     /* darker red on hover */
+  color: #333333;                     /* slightly darker on hover */
 }
 
 
