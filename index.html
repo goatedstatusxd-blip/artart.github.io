@@ -34,12 +34,10 @@ const grid = document.getElementById("projects-grid");
 // Create project cards with hover overlay
 function createCard(project) {
   return `
-    <div class="project-item" data-type="${project.type}">
+    <div class="project-item">
       <div class="project-inner">
         <img src="${project.thumbnail}" alt="${project.title}" data-link="${project.link}" data-type="${project.type}">
-        <div class="project-overlay">
-          <span>${project.title}</span>
-        </div>
+        <div class="project-overlay"><span>${project.title}</span></div>
       </div>
     </div>
   `;
