@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Gallery – Aura Vilkisiute</title>
+  <title>Galerija</title>
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
@@ -10,7 +10,7 @@
 <body>
 
 <div class="container py-5">
-  <h2 class="section-title">Gallery</h2>
+  <h2 class="section-title">Galerija</h2>
 
   <div class="gallery-grid">
     <img src="assets/images/gallery1.jpg" alt="">
@@ -25,6 +25,22 @@
     </a>
   </div>
 </div>
+
+<script>
+  // Fade-in for gallery images
+  function revealGallery() {
+    const items = document.querySelectorAll('.gallery-grid img');
+    items.forEach(item => {
+      const rect = item.getBoundingClientRect();
+      if (rect.top < window.innerHeight - 50) {
+        item.classList.add('visible');
+      }
+    });
+  }
+
+  window.addEventListener('scroll', revealGallery);
+  window.addEventListener('load', revealGallery);
+</script>
 
 </body>
 </html>
