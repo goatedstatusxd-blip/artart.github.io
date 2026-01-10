@@ -1,0 +1,18 @@
+backend:
+  name: github
+  repo: YOUR_USERNAME/YOUR_REPO_NAME  # Replace with your GitHub username/repo
+  branch: main                         # The branch Netlify will edit
+
+media_folder: "assets/images"          # Where uploaded images go
+public_folder: "assets/images"
+
+collections:
+  - name: "projects"
+    label: "Projects"
+    folder: "projects"                 # Folder to store project data
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Image", name: "image", widget: "image" }
+      - { label: "Link", name: "link", widget: "string", default: "#" }
