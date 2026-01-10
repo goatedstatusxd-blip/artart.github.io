@@ -2,25 +2,49 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Artist Name</title>
+  <title>Artist Portfolio</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom CSS -->
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-<header>
-  <h1>Artist Name</h1>
-  <nav>
-    <a href="work.html">Work</a>
-    <a href="about.html">About</a>
-  </nav>
-</header>
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">Artist Name</a>
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="work.html">Work</a></li>
+        <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
 
-<section class="grid">
-  <a href="project.html">
-    <img src="assets/images/example.jpg" alt="">
-    <p>Project Title</p>
-  </a>
-</section>
+<!-- Hero / Welcome -->
+<div class="container text-center py-5">
+  <h1>Welcome to my Portfolio</h1>
+  <p class="lead">Check out my drawings, photos, and videos below.</p>
+</div>
+
+<!-- Featured Work -->
+<div class="container py-4">
+  <div class="row g-4">
+    <div class="col-md-4">
+      <div class="card">
+        <a href="project1.html">
+          <img src="assets/images/example.jpg" class="card-img-top" alt="Project Title">
+        </a>
+        <div class="card-body">
+          <h5 class="card-title text-center">Example Project</h5>
+        </div>
+      </div>
+    </div>
+    <!-- Duplicate col-md-4 blocks for more featured projects -->
+  </div>
+</div>
 
 </body>
 </html>
