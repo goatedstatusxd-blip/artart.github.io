@@ -16,6 +16,31 @@
 <!-- Projects Section -->
 <div class="project-grid" id="projects-grid"></div>
 
+<script src="js/projects.js"></script>
+<script>
+const grid = document.getElementById("projects-grid");
+
+// Create project cards with hover overlay and clickable images
+function createCard(project) {
+  // Encode project title for URL
+  const projectURL = `project.html?project=${encodeURIComponent(project.title)}`;
+
+  return `
+    <div class="project-item">
+      <div class="project-inner">
+        <a href="${projectURL}">
+          <img src="${project.thumbnail}" alt="${project.title}">
+          <div class="project-overlay"><span>${project.title}</span></div>
+        </a>
+      </div>
+    </div>
+  `;
+}
+
+projects.forEach(p => grid.innerHTML += createCard(p));
+</script>
+
+
 <!-- Lightbox Modal -->
 <div id="lightbox" class="lightbox">
   <span class="close">&times;</span>
