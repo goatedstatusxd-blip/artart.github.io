@@ -44,13 +44,7 @@ body {
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  margin-left: 120px; /* leave space for nav */
-}
-
-.hero img {
-  max-width: 80%;
-  max-height: 100%;
-  object-fit: contain;
+  /* margin-left removed so it centers correctly */
 }
 
 /* Projects Grid */
@@ -59,13 +53,29 @@ body {
   grid-template-columns: repeat(4, 1fr);
   gap: 10px;
   margin-top: 20px;
-  margin-left: 120px; /* align with nav */
+  justify-content: center; /* centers the grid */
 }
 
 /* Responsive grid */
-@media (max-width:1200px){ .project-grid{grid-template-columns:repeat(3,1fr);} }
-@media (max-width:900px){ .project-grid{grid-template-columns:repeat(2,1fr);} }
-@media (max-width:600px){ .project-grid{grid-template-columns:1fr;} }
+@media (max-width:1200px){ 
+  .project-grid{
+    grid-template-columns:repeat(3,1fr);
+    justify-content: center;
+  } 
+}
+@media (max-width:900px){ 
+  .project-grid{
+    grid-template-columns:repeat(2,1fr);
+    justify-content: center;
+  } 
+}
+@media (max-width:600px){ 
+  .project-grid{
+    grid-template-columns:1fr;
+    justify-content: center;
+  } 
+}
+
 
 /* Project items */
 .project-item {
