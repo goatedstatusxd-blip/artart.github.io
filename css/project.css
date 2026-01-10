@@ -120,3 +120,28 @@ p {
   color:white;
   cursor:pointer;
 }
+/* Top-left navigation buttons */
+.top-nav {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  z-index: 100;
+}
+
+.top-nav a {
+  display: inline-block;
+  background: #fff;
+  color: #000;
+  text-decoration: none;
+  font-weight: bold;
+  margin-right: 10px;
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: all 0.2s;
+  font-size: 0.9rem;
+}
+
+.top-nav a:hover {
+  background: #9F0B0E;
+  color: #fff;
+}
