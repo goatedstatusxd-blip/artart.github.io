@@ -15,8 +15,8 @@ body {
 }
 
 .hero img {
-  max-height: 100%;
-  max-width: 60%;           /* makes image smaller */
+  max-height: 80%;
+  max-width: 40%;           /* makes image smaller */
   object-fit: contain;
 }
 
