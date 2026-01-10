@@ -21,20 +21,23 @@
 
     <!-- Main Content -->
     <main class="col-12 content-area">
-      <div id="project-media" class="project-media mb-4" style="float:left; width:50%;"></div>
-      <div style="margin-left:52%;">
-        <h1 id="project-title"></h1>
-        <p id="project-description"></p>
+
+      <div class="project-main">
+        <div id="project-media" class="project-media"></div>
+        <div class="project-info">
+          <h1 id="project-title"></h1>
+          <p id="project-description"></p>
+        </div>
       </div>
 
-      <h3 style="clear:both; margin-top:30px;">Gallery</h3>
+      <h3 class="gallery-title">Gallery</h3>
       <div id="project-gallery" class="gallery-grid"></div>
-    </main>
 
+    </main>
   </div>
 </div>
 
-<!-- Lightbox -->
+<!-- Lightbox for gallery -->
 <div id="lightbox" class="lightbox">
   <span class="close">&times;</span>
   <div id="lightbox-content">
@@ -78,12 +81,14 @@
       project.gallery.forEach(item => {
         const col = document.createElement('div');
         col.className = "gallery-item";
+
         let mediaHTML = '';
         if (item.type === "video") {
           mediaHTML = `<iframe src="${item.link}" frameborder="0" allowfullscreen></iframe>`;
         } else {
           mediaHTML = `<img src="${item.link}" alt="${project.title}">`;
         }
+
         col.innerHTML = mediaHTML;
         galleryEl.appendChild(col);
 
@@ -119,5 +124,6 @@
     document.getElementById("lightbox-iframe").src = "";
   });
 </script>
+
 </body>
 </html>
