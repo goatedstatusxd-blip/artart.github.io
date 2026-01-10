@@ -6,19 +6,21 @@ body {
   margin: 0;
 }
 
-/* Hero / Banner */
+/* Banner / Hero */
 .hero {
-  height: 160px;
+  height: 220px; /* slightly larger */
   display: flex;
   align-items: center;
   justify-content: center;
   margin-top: 30px;
+  position: relative; /* for side graphics */
 }
 
 .hero img {
   max-height: 100%;
-  max-width: 80%;
+  max-width: 65%; /* slightly bigger */
   object-fit: contain;
+  z-index: 2;
 }
 
 /* Navigation */
