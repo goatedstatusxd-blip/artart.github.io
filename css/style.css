@@ -5,42 +5,30 @@ body {
   background: #fafafa;
 }
 
-/* Vertical navigation */
-.nav-vertical {
+/* Simple top-left navigation buttons */
+.top-nav {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 160px;
-  height: 100%;
+  top: 10px;
+  left: 10px;
+  z-index: 100;
+}
+
+.top-nav a {
+  display: inline-block;
   background: #fff;
-  padding-top: 20px;
-  border-right: 1px solid #ddd;
-}
-
-.nav-vertical ul {
-  list-style: none;
-  padding-left: 0;
-}
-
-.nav-vertical ul li {
-  margin: 15px 0;
-}
-
-.nav-vertical ul li a {
+  color: #000;
   text-decoration: none;
   font-weight: bold;
-  color: #000;
-  transition: color 0.2s;
+  margin-right: 10px;
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: all 0.2s;
+  font-size: 0.9rem;
 }
 
-.nav-vertical ul li a:hover {
-  color: #9F0B0E;
-}
-
-/* Content area */
-.content-area {
-  margin-left: 160px;
-  padding: 20px;
+.top-nav a:hover {
+  background: #9F0B0E;
+  color: #fff;
 }
 
 /* Hero Banner */
@@ -51,6 +39,7 @@ body {
   justify-content: center;
   align-items: center;
   overflow: hidden;
+  margin-top: 50px; /* leave space for nav */
 }
 
 .hero img {
@@ -65,6 +54,7 @@ body {
   grid-template-columns: repeat(4, 1fr);
   gap: 10px;
   width: 100%;
+  margin-top: 20px;
 }
 
 @media (max-width:1200px){ .project-grid{grid-template-columns:repeat(3,1fr);} }
