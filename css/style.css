@@ -8,17 +8,17 @@ body {
 
 /* Banner / Hero */
 .hero {
-  height: 220px; /* slightly larger */
+  height: 220px;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-top: 30px;
-  position: relative; /* for side graphics */
+  position: relative;
 }
 
 .hero img {
   max-height: 100%;
-  max-width: 65%; /* slightly bigger */
+  max-width: 65%;
   object-fit: contain;
   z-index: 2;
 }
@@ -71,17 +71,11 @@ body {
 
 .project-item img {
   width: 100%;
-  height: 250px;  /* make them taller for better presence */
+  height: 250px;
   border-radius: 14px;
   object-fit: cover;
   transition: transform 0.35s ease, opacity 0.35s ease;
 }
-
-.project-item {
-  display: block;
-  margin-bottom: 20px;
-}
-
 
 .project-item:hover img {
   transform: scale(1.03);
@@ -92,6 +86,18 @@ body {
   text-align: center;
   font-size: 0.95rem;
   font-weight: 500;
+}
+
+/* Fade-in */
+.project-item, .gallery-grid img {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: transform 0.6s ease, opacity 0.6s ease;
+}
+
+.project-item.visible, .gallery-grid img.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* Gallery */
@@ -105,22 +111,44 @@ body {
   margin-bottom: 1.2rem;
   border-radius: 12px;
   break-inside: avoid;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, opacity 0.35s ease;
 }
 
 .gallery-grid img:hover {
   transform: scale(1.02);
 }
 
+/* Side graphics */
+.side-graphic {
+  position: fixed;
+  top: 20%;
+  width: 80px;
+  height: 80px;
+  background: radial-gradient(circle, #ffd70033, #ffdd0033);
+  border-radius: 50%;
+  z-index: 1;
+  pointer-events: none;
+  animation: float 5s ease-in-out infinite;
+}
+
+.side-graphic.left {
+  left: 20px;
+}
+
+.side-graphic.right {
+  right: 20px;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
 /* Responsive */
 @media (max-width: 992px) {
-  .gallery-grid {
-    column-count: 2;
-  }
+  .gallery-grid { column-count: 2; }
 }
 
 @media (max-width: 576px) {
-  .gallery-grid {
-    column-count: 1;
-  }
+  .gallery-grid { column-count: 1; }
 }
