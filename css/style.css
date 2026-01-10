@@ -126,6 +126,39 @@ body {
   transform: translateY(0);
 }
 
+/* Filter Buttons */
+.filter-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  background: #D61A21;      /* burgundy */
+  color: white;
+  font-family: "Helvetica", Arial, sans-serif;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+}
+
+.filter-btn:hover {
+  background: #a11518;
+  transform: scale(1.05);
+}
+
+.filter-btn.active {
+  background: #a11518;
+  box-shadow: 0 0 8px rgba(0,0,0,0.2);
+}
+
+
 /* Lightbox */
 .lightbox {
   position: fixed;
