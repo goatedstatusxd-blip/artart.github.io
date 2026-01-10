@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: artart.github.io  # Replace with your GitHub username/repo
+  repo: goatedstatusxd-blip/artart.github.io  # Replace with your GitHub username/repo
   branch: main                         # The branch Netlify will edit
 
 media_folder: "assets/images"          # Where uploaded images go
