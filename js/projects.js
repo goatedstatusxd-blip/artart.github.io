@@ -10,4 +10,10 @@ const projects = [
   // Drawings & Paintings
   { title: "Sketch 1", type: "drawing", thumbnail: "assets/images/drawing1.jpg", link: "assets/images/drawing1.jpg" },
   { title: "Painting 1", type: "drawing", thumbnail: "assets/images/drawing2.jpg", link: "assets/images/drawing2.jpg" },
-];
+  // Reveal filter buttons when scrolling to projects
+const filters = document.querySelector('.filter-buttons');
+window.addEventListener('scroll', () => {
+  if (filters.getBoundingClientRect().top < window.innerHeight - 50) {
+    filters.classList.add('visible');
+  }
+});
