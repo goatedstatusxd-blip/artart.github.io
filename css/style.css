@@ -5,19 +5,21 @@ body {
   color: #111;
 }
 
-/* Banner */
+/* Banner / Hero */
 .hero {
-  height: 320px;
+  height: 180px;            /* smaller height */
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-top: 30px;
 }
 
 .hero img {
   max-height: 100%;
-  max-width: 75%;
+  max-width: 60%;           /* makes image smaller */
   object-fit: contain;
 }
+
 
 /* Section titles */
 .section-title {
