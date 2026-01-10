@@ -19,18 +19,29 @@
   <img src="assets/images/banner.png" alt="Portfolio Banner">
 </div>
 
-<!-- Navigation / Filter Tabs -->
+<!-- Navigation -->
 <nav class="portfolio-nav">
-  <button class="filter-btn active" data-type="all">Visi</button>
-  <button class="filter-btn" data-type="video">Filmai ir Video</button>
-  <button class="filter-btn" data-type="photo">Fotografija</button>
-  <button class="filter-btn" data-type="drawing">Kita</button>
+  <a href="#projects" class="nav-main">Projektai</a>
+  <a href="#gallery">Galerija</a>
+  <a href="#about">Apie Mane</a>
 </nav>
 
+
 <!-- Projects Grid -->
-<div class="container py-5">
+<div class="container py-5" id="projects">
+
+  <!-- Filter Buttons -->
+  <div class="filter-buttons mb-4 text-center">
+    <button class="filter-btn active" data-type="all">All</button>
+    <button class="filter-btn" data-type="video">Film & Video</button>
+    <button class="filter-btn" data-type="photo">Photography</button>
+    <button class="filter-btn" data-type="drawing">Drawings</button>
+  </div>
+
+  <!-- Projects Grid -->
   <div class="project-grid" id="projects-grid"></div>
 </div>
+
 
 <!-- Lightbox Modal -->
 <div id="lightbox" class="lightbox">
