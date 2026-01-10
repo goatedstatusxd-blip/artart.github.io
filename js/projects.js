@@ -1,7 +1,7 @@
 const projects = [
   {
     title: "Kur Sea Vai",
-    image: "assets/images/kadrai/kadrai1.png",
+    image: "assets/images/kur sea vai/kadrai1.png",
     link: "project1.html"
   },
   {
