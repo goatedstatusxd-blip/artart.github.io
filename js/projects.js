@@ -7,11 +7,11 @@ const projects = [
   {
     title: "Antradienis",
     image: "assets/images/antradienis/antradienis1.png",
-    link: "project1.html"
+    link: "project2.html"
   },
   {
     title: "Radio",
     image: "assets/images/radio/radio1.png",
-    link: "project2.html"
+    link: "project3.html"
   }
 ];
