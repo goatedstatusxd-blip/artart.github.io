@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<!-- Top-left navigation buttons -->
+<!-- Modern vertical navigation -->
 <div class="top-nav">
   <a href="index.html">Home</a>
   <a href="index.html#projects">Projects</a>
@@ -17,27 +17,25 @@
 </div>
 
 <div class="container-fluid">
-  <div class="row">
+  <main class="content-area">
 
-    <!-- Main Content -->
-    <main class="col-12 content-area">
-
-      <div class="project-main">
-        <div id="project-media" class="project-media"></div>
-        <div class="project-info">
-          <h1 id="project-title"></h1>
-          <p id="project-description"></p>
-        </div>
+    <!-- Main media and project info -->
+    <div class="project-main">
+      <div id="project-media" class="project-media"></div>
+      <div class="project-info">
+        <h1 id="project-title"></h1>
+        <p id="project-description"></p>
       </div>
+    </div>
 
-      <h3 class="gallery-title">Gallery</h3>
-      <div id="project-gallery" class="gallery-grid"></div>
+    <!-- Gallery -->
+    <h3 class="gallery-title">Gallery</h3>
+    <div id="project-gallery" class="gallery-grid"></div>
 
-    </main>
-  </div>
+  </main>
 </div>
 
-<!-- Lightbox for gallery -->
+<!-- Lightbox -->
 <div id="lightbox" class="lightbox">
   <span class="close">&times;</span>
   <div id="lightbox-content">
@@ -49,81 +47,27 @@
 
 <script src="js/project-data.js"></script>
 <script>
-  // Get project from URL parameter
-  const params = new URLSearchParams(window.location.search);
-  const projectName = params.get('project');
-  const project = projects.find(p => p.title === projectName);
+const params = new URLSearchParams(window.location.search);
+const projectName = params.get('project');
+const project = projects.find(p => p.title === projectName);
 
-  if (!project) {
-    document.body.innerHTML = "<h2>Project not found</h2>";
-  } else {
-    const mediaContainer = document.getElementById('project-media');
-    const titleEl = document.getElementById('project-title');
-    const descEl = document.getElementById('project-description');
-    const galleryEl = document.getElementById('project-gallery');
+if(!project){
+  document.body.innerHTML = "<h2>Project not found</h2>";
+}else{
+  const mediaContainer = document.getElementById('project-media');
+  const titleEl = document.getElementById('project-title');
+  const descEl = document.getElementById('project-description');
+  const galleryEl = document.getElementById('project-gallery');
 
-    titleEl.textContent = project.title;
-    descEl.textContent = project.description || "No description provided";
+  titleEl.textContent = project.title;
+  descEl.textContent = project.description || "No description provided";
 
-    // Main media
-    if (project.type === "video") {
-      if (project.link.includes("youtube") || project.link.includes("drive.google.com")) {
-        mediaContainer.innerHTML = `<iframe src="${project.link}" width="100%" height="480" frameborder="0" allowfullscreen></iframe>`;
-      } else {
-        mediaContainer.innerHTML = `<video src="${project.link}" width="100%" height="480" controls></video>`;
-      }
-    } else {
-      mediaContainer.innerHTML = `<img src="${project.link}" width="100%" height="480" style="object-fit:cover;">`;
+  // Main media
+  if(project.type==="video"){
+    if(project.link.includes("youtube")||project.link.includes("drive.google.com")){
+      mediaContainer.innerHTML = `<iframe src="${project.link}" width="100%" height="480" frameborder="0" allowfullscreen></iframe>`;
+    }else{
+      mediaContainer.innerHTML = `<video src="${project.link}" width="100%" height="480" controls></video>`;
     }
-
-    // Gallery
-    if (project.gallery && project.gallery.length > 0) {
-      project.gallery.forEach(item => {
-        const col = document.createElement('div');
-        col.className = "gallery-item";
-
-        let mediaHTML = '';
-        if (item.type === "video") {
-          mediaHTML = `<iframe src="${item.link}" frameborder="0" allowfullscreen></iframe>`;
-        } else {
-          mediaHTML = `<img src="${item.link}" alt="${project.title}">`;
-        }
-
-        col.innerHTML = mediaHTML;
-        galleryEl.appendChild(col);
-
-        // Clickable lightbox
-        col.addEventListener('click', () => {
-          document.getElementById("lightbox-video").style.display = "none";
-          document.getElementById("lightbox-iframe").style.display = "none";
-          document.getElementById("lightbox-image").style.display = "none";
-
-          if(item.type === "video") {
-            if (item.link.includes("youtube") || item.link.includes("drive.google.com")) {
-              document.getElementById("lightbox-iframe").src = item.link;
-              document.getElementById("lightbox-iframe").style.display = "block";
-            } else {
-              document.getElementById("lightbox-video").src = item.link;
-              document.getElementById("lightbox-video").style.display = "block";
-            }
-          } else {
-            document.getElementById("lightbox-image").src = item.link;
-            document.getElementById("lightbox-image").style.display = "block";
-          }
-          document.getElementById("lightbox").style.display = "flex";
-        });
-      });
-    }
-  }
-
-  // Lightbox close
-  const lightbox = document.getElementById("lightbox");
-  lightbox.querySelector(".close").addEventListener('click', () => {
-    lightbox.style.display = "none";
-    document.getElementById("lightbox-video").pause();
-    document.getElementById("lightbox-iframe").src = "";
-  });
-</script>
-
-</body>
-</html>
+  }else{
+    mediaContainer.innerHTML = `<img src="${projec
