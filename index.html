@@ -18,35 +18,38 @@
 <!-- Projects Section -->
 <div class="container py-4">
   <div class="row g-4" id="projects-row">
-
-    <!-- Project 1 -->
-    <div class="col-md-4">
-      <div class="card">
-        <a href="project1.html">
-          <img src="assets/images/example.jpg" class="card-img-top" alt="Kur Sea Vai">
-        </a>
-        <div class="card-body">
-          <h5 class="card-title text-center">Kur Sea Vai</h5>
-        </div>
-      </div>
-    </div>
-
-    <!-- Project 2 -->
-    <div class="col-md-4">
-      <div class="card">
-        <a href="project1.html">
-          <img src="assets/images/example.jpg" class="card-img-top" alt="Example Project">
-        </a>
-        <div class="card-body">
-          <h5 class="card-title text-center">Example Project</h5>
-        </div>
-      </div>
-    </div>
-
-    <!-- Add more projects here by duplicating a col-md-4 block -->
-
+    <!-- Project cards will be generated here by JavaScript -->
   </div>
 </div>
+
+<!-- JavaScript to generate project cards automatically -->
+<script>
+  // Add your projects here
+  const projects = [
+    { title: "Kur Sea Vai", img: "assets/images/example.jpg", link: "project1.html" },
+    { title: "Example Project", img: "assets/images/example.jpg", link: "project1.html" }
+    // Add more projects like this:
+    // { title: "New Project", img: "assets/images/new.jpg", link: "project2.html" }
+  ];
+
+  const row = document.getElementById("projects-row");
+
+  projects.forEach(p => {
+    const col = document.createElement("div");
+    col.className = "col-md-4";
+    col.innerHTML = `
+      <div class="card">
+        <a href="${p.link}">
+          <img src="${p.img}" class="card-img-top" alt="${p.title}">
+        </a>
+        <div class="card-body">
+          <h5 class="card-title text-center">${p.title}</h5>
+        </div>
+      </div>
+    `;
+    row.appendChild(col);
+  });
+</script>
 
 </body>
 </html>
