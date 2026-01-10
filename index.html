@@ -21,45 +21,94 @@
 
 <!-- Navigation -->
 <nav class="portfolio-nav">
-  <a href="index.html" class="nav-main">Projektai</a>
-  <a href="gallery.html">Galerija</a>
-  <a href="about.html">Apie Mane</a>
+  <a href="#videos" class="nav-main">Projektai</a>
+  <a href="#photos">Galerija</a>
+  <a href="#drawings">Apie Mane</a>
 </nav>
 
-<!-- Projects -->
+<!-- Projects Sections -->
 <div class="container py-5">
-  <h2 class="section-title">Projektai</h2>
-  <div class="row g-4" id="projects"></div>
+
+  <!-- Videos -->
+  <h2 class="section-title" id="videos">Video</h2>
+  <div class="project-grid" id="videos-grid"></div>
+
+  <!-- Photography -->
+  <h2 class="section-title" id="photos">Fotografija</h2>
+  <div class="project-grid" id="photos-grid"></div>
+
+  <!-- Drawings / Paintings -->
+  <h2 class="section-title" id="drawings">Drawing</h2>
+  <div class="project-grid" id="drawings-grid"></div>
+
+</div>
+
+<!-- Lightbox Modal -->
+<div id="lightbox" class="lightbox">
+  <span class="close">&times;</span>
+  <video id="lightbox-video" controls></video>
+  <img id="lightbox-image" alt="">
 </div>
 
 <script src="js/projects.js"></script>
 <script>
-  const container = document.getElementById("projects");
-
-  projects.forEach(p => {
-    container.innerHTML += `
-      <div class="col-md-4">
-        <a href="${p.link}" class="project-item">
-          <img src="${p.image}" alt="${p.title}">
-          <div class="project-title">${p.title}</div>
-        </a>
+  function createProjectCard(project) {
+    return `
+      <div class="project-item">
+        <img src="${project.thumbnail}" alt="${project.title}" data-link="${project.link}" data-type="${project.type}">
+        <div class="project-title">${project.title}</div>
       </div>
     `;
+  }
+
+  const videosGrid = document.getElementById("videos-grid");
+  const photosGrid = document.getElementById("photos-grid");
+  const drawingsGrid = document.getElementById("drawings-grid");
+
+  projects.forEach(p => {
+    if (p.type === "video") videosGrid.innerHTML += createProjectCard(p);
+    if (p.type === "photo") photosGrid.innerHTML += createProjectCard(p);
+    if (p.type === "drawing") drawingsGrid.innerHTML += createProjectCard(p);
   });
 
   // Fade-in scroll effect
   function reveal() {
-    const items = document.querySelectorAll('.project-item');
-    items.forEach(item => {
+    document.querySelectorAll('.project-item').forEach(item => {
       const rect = item.getBoundingClientRect();
-      if (rect.top < window.innerHeight - 50) {
-        item.classList.add('visible');
-      }
+      if (rect.top < window.innerHeight - 50) item.classList.add('visible');
     });
   }
 
   window.addEventListener('scroll', reveal);
   window.addEventListener('load', reveal);
+
+  // Lightbox functionality
+  const lightbox = document.getElementById("lightbox");
+  const lbVideo = document.getElementById("lightbox-video");
+  const lbImage = document.getElementById("lightbox-image");
+  const closeBtn = lightbox.querySelector(".close");
+
+  document.querySelectorAll('.project-item img').forEach(img => {
+    img.addEventListener('click', () => {
+      const type = img.dataset.type;
+      const link = img.dataset.link;
+      if (type === "video") {
+        lbVideo.src = link;
+        lbVideo.style.display = "block";
+        lbImage.style.display = "none";
+      } else {
+        lbImage.src = link;
+        lbImage.style.display = "block";
+        lbVideo.style.display = "none";
+      }
+      lightbox.style.display = "flex";
+    });
+  });
+
+  closeBtn.addEventListener('click', () => {
+    lightbox.style.display = "none";
+    lbVideo.pause();
+  });
 </script>
 
 </body>
