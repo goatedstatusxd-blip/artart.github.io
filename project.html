@@ -19,7 +19,7 @@
 <div class="container-fluid">
   <main class="content-area">
 
-    <!-- Main media and project info -->
+    <!-- Main media and project info side by side -->
     <div class="project-main">
       <div id="project-media" class="project-media"></div>
       <div class="project-info">
@@ -59,18 +59,19 @@
     const descEl = document.getElementById('project-description');
     const galleryEl = document.getElementById('project-gallery');
 
-    titleEl.textContent = project.title;
+    // Title capitalized
+    titleEl.textContent = project.title.toUpperCase();
     descEl.textContent = project.description || "No description provided";
 
-    // Main media
+    // Main media bigger
     if(project.type === "video"){
       if(project.link.includes("youtube") || project.link.includes("drive.google.com")){
-        mediaContainer.innerHTML = `<iframe src="${project.link}" width="100%" height="480" frameborder="0" allowfullscreen></iframe>`;
+        mediaContainer.innerHTML = `<iframe src="${project.link}" width="100%" height="600" frameborder="0" allowfullscreen></iframe>`;
       } else {
-        mediaContainer.innerHTML = `<video src="${project.link}" width="100%" height="480" controls></video>`;
+        mediaContainer.innerHTML = `<video src="${project.link}" width="100%" height="600" controls></video>`;
       }
     } else {
-      mediaContainer.innerHTML = `<img src="${project.link}" width="100%" height="480" style="object-fit:cover;">`;
+      mediaContainer.innerHTML = `<img src="${project.link}" width="100%" height="600" style="object-fit:cover;">`;
     }
 
     // Gallery
@@ -89,7 +90,6 @@
         col.innerHTML = mediaHTML;
         galleryEl.appendChild(col);
 
-        // Clickable lightbox
         col.addEventListener('click', () => {
           document.getElementById("lightbox-video").style.display = "none";
           document.getElementById("lightbox-iframe").style.display = "none";
