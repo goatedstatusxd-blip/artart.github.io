@@ -1,12 +1,12 @@
 const projects = [
   {
     title: "Kur Sea Vai",
-    image: "assets/images/example.jpg",
-    link: "project.html?project=kur-sea-vai"
+    image: "assets/images/project1.jpg",
+    link: "project1.html"
   },
   {
-    title: "Another Project",
-    image: "assets/images/example2.jpg",
-    link: "project.html?project=another"
+    title: "Another Work",
+    image: "assets/images/project2.jpg",
+    link: "project2.html"
   }
 ];
