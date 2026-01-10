@@ -82,18 +82,27 @@ body {
 }
 
 .project-title {
-  text-align: center;           /* Center under image */
-  font-family: Arial, sans-serif;  /* Basic font */
-  font-size: 1rem;              /* Adjust if needed */
-  font-weight: bold;
-  color: red;                   /* Red text */
-  text-transform: uppercase;    /* All caps */
-  width: 100%;                  /* Same width as image */
-  display: block;                /* Ensure width applies */
-  padding: 12px 0;              /* Taller spacing */
-  letter-spacing: 1px;          /* Optional: nice spacing for caps */
-  transition: color 0.3s ease;  /* Optional hover effect */
+  display: flex;                  /* allows easy stretching */
+  align-items: center;            /* vertically center text */
+  justify-content: center;        /* horizontally center text */
+  text-align: center;             /* fallback */
+  font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif; /* modern sans-serif */
+  font-size: 1.05rem;             /* slightly larger */
+  font-weight: 600;               /* modern semi-bold look */
+  color: #800020;                 /* burgundy */
+  text-transform: uppercase;      /* all caps */
+  width: 100%;                    /* match image width */
+  height: 60px;                   /* taller block under image */
+  box-sizing: border-box;         /* padding included in height */
+  letter-spacing: 1.5px;          /* modern spaced letters */
+  padding: 10px;                  /* vertical breathing room */
+  transition: color 0.3s ease;    /* hover effect */
 }
+
+.project-item:hover .project-title {
+  color: #a00030;                 /* darker burgundy on hover */
+}
+
 
 .project-item:hover .project-title {
   color: darkred;               /* Optional: hover effect */
