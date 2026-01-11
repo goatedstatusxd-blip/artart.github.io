@@ -19,7 +19,19 @@ const projects = [
     description: "Experimental video project.",
     gallery: [
       "assets/images/radio/radio1.png",
-      "assets/images/radio/radio2.png"
+      "assets/images/radio/radio2.png",
+      "assets/images/radio/radio3.png"
+    ]
+  },
+   {
+    title: "Laukiniai",
+    type: "photo",
+    thumbnail: "assets/images/laukiniai/laukiniai1.png",
+    link: "assets/images/antradienis/antradienis1.png",
+    description: "Experimental video project.",
+    gallery: [
+      "assets/images/laukiniai/laukiniai1.png",
+      "assets/images/laukiniai/laukiniai2.png"
     ]
   },
   {
@@ -30,7 +42,8 @@ const projects = [
     description: "Photography series.",
     gallery: [
       "assets/images/antradienis/antradienis1.png",
-      "assets/images/antradienis/antradienis2.png"
+      "assets/images/antradienis/antradienis2.png",
+      "assets/images/antradienis/antradienis3.png"
     ]
   }
 ];
