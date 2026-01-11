@@ -16,6 +16,14 @@
 <!-- Main project container -->
 <div class="project-container"></div>
 
+<!-- Lightbox overlay -->
+<div id="lightbox" class="lightbox">
+  <span class="close">&times;</span>
+  <img class="lightbox-img" src="" alt="">
+  <span class="prev">&#10094;</span>
+  <span class="next">&#10095;</span>
+</div>
+
 <script src="js/projects.js"></script>
 <script>
 function getQueryParam(name) {
@@ -25,7 +33,6 @@ function getQueryParam(name) {
 
 const projectName = getQueryParam('project');
 const project = projects.find(p => p.title === projectName);
-
 const container = document.querySelector('.project-container');
 
 if(project){
@@ -36,6 +43,9 @@ if(project){
     mainItem = `<img src="${project.link}" alt="${project.title}">`;
   }
 
+  // For demonstration, gallery includes main thumbnail + additional (can extend)
+  const galleryImages = [project.thumbnail];
+
   container.innerHTML = `
     <div class="main-project">
       ${mainItem}
@@ -45,11 +55,50 @@ if(project){
       </div>
     </div>
 
-    <!-- Gallery (example: same as main thumbnail for now) -->
+    <!-- Gallery -->
     <div class="project-gallery">
-      <img src="${project.thumbnail}" alt="${project.title}">
+      ${galleryImages.map((img, i) => `<img src="${img}" data-index="${i}" alt="Gallery Image ${i+1}">`).join('')}
     </div>
   `;
+
+  // Lightbox functionality
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.querySelector('.lightbox-img');
+  const images = document.querySelectorAll('.project-gallery img');
+  let currentIndex = 0;
+
+  function openLightbox(index){
+    currentIndex = index;
+    lightbox.style.display = 'block';
+    lightboxImg.src = images[index].src;
+  }
+
+  function closeLightbox(){
+    lightbox.style.display = 'none';
+  }
+
+  function nextImage(){
+    currentIndex = (currentIndex + 1) % images.length;
+    lightboxImg.src = images[currentIndex].src;
+  }
+
+  function prevImage(){
+    currentIndex = (currentIndex - 1 + images.length) % images.length;
+    lightboxImg.src = images[currentIndex].src;
+  }
+
+  images.forEach((img, idx) => {
+    img.addEventListener('click', () => openLightbox(idx));
+  });
+
+  document.querySelector('.close').addEventListener('click', closeLightbox);
+  document.querySelector('.next').addEventListener('click', nextImage);
+  document.querySelector('.prev').addEventListener('click', prevImage);
+
+  // Close lightbox on click outside image
+  lightbox.addEventListener('click', e => {
+    if(e.target === lightbox) closeLightbox();
+  });
 }
 </script>
 </body>
