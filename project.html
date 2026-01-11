@@ -20,15 +20,16 @@
   <span class="lightbox-close" id="close">×</span>
 </div>
 
+
 <script src="js/projects.js"></script>
 <script>
 const params = new URLSearchParams(window.location.search);
-const title = params.get("project");
-const project = projects.find(p => p.title === title);
+const id = Number(params.get("id"));
+const project = projects.find(p => p.id === id);
 
 if (!project) {
-  document.getElementById("project").innerHTML = "<p>Project not found</p>";
-  throw new Error("Project not found");
+  document.body.innerHTML = "<p>Project not found</p>";
+  throw new Error("Invalid project ID");
 }
 
 const galleryItems = project.gallery || [];
