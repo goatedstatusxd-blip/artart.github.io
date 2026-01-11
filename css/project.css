@@ -5,7 +5,7 @@ body {
   padding: 30px;
 }
 
-/* Back */
+/* Back button */
 .back-btn {
   text-decoration: none;
   color: #9F0B0E;
@@ -23,10 +23,10 @@ body {
 .main-project {
   display: flex;
   gap: 30px;
-  align-items: flex-start;
+  align-items: center;
 }
 
-/* MAIN MEDIA — 480p SIZE */
+/* MAIN MEDIA — true 480p */
 .main-media iframe,
 .main-media img {
   width: 640px;
@@ -49,7 +49,7 @@ body {
   max-width: 420px;
 }
 
-/* GALLERY */
+/* Gallery */
 .project-gallery {
   margin-top: 40px;
   display: grid;
@@ -64,28 +64,36 @@ body {
   cursor: pointer;
 }
 
-/* LIGHTBOX — PERFECT CENTER */
+/* LIGHTBOX — DEFAULT CLOSED */
 .lightbox {
-  display: none;
+  display: none; /* IMPORTANT */
   position: fixed;
   inset: 0;
   background: rgba(0,0,0,0.9);
-  justify-content: center;
-  align-items: center;
   z-index: 999;
 }
 
+/* LIGHTBOX OPEN STATE */
+.lightbox.open {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Image centered perfectly */
 .lightbox-img {
   max-width: 90vw;
   max-height: 90vh;
   object-fit: contain;
 }
 
+/* Controls */
 .lightbox span {
   position: absolute;
   color: white;
   font-size: 2.5rem;
   cursor: pointer;
+  user-select: none;
 }
 
 .close { top: 20px; right: 30px; }
