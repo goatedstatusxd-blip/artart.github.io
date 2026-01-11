@@ -20,7 +20,7 @@ body {
 .back-btn a:hover { color:#1a1a1a; }
 
 .project-container {
-  max-width: 1000px;
+  max-width: 1200px; /* wider container for bigger media */
   margin: 0 auto;
 }
 
@@ -33,9 +33,10 @@ body {
 }
 
 .main-project img, .main-project iframe {
-  max-width: 600px;
-  width: 100%;
-  height: auto;
+  width: 640px;  /* approximate 480p width */
+  height: 360px; /* 480p height ratio 16:9 */
+  object-fit: cover;
+  border-radius: 4px;
 }
 
 .project-info h1 {
@@ -78,8 +79,9 @@ body {
   width:100%;
   height:100%;
   background: rgba(0,0,0,0.9);
-  justify-content:center;
-  align-items:center;
+  display: flex;
+  justify-content: center;
+  align-items: center; /* center the image vertically */
 }
 
 .lightbox-img {
@@ -106,5 +108,6 @@ body {
 /* Responsive adjustments */
 @media(max-width:900px){
   .main-project {flex-direction: column; align-items:center;}
+  .main-project img, .main-project iframe {width: 90%; height: auto;}
   .project-gallery img {width:100%;}
 }
