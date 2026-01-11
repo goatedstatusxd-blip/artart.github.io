@@ -64,23 +64,23 @@ body {
   cursor: pointer;
 }
 
-/* LIGHTBOX — DEFAULT CLOSED */
+/* LIGHTBOX — CLOSED BY DEFAULT */
 .lightbox {
-  display: none; /* IMPORTANT */
+  display: none;
   position: fixed;
   inset: 0;
   background: rgba(0,0,0,0.9);
   z-index: 999;
 }
 
-/* LIGHTBOX OPEN STATE */
+/* LIGHTBOX OPEN */
 .lightbox.open {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-/* Image centered perfectly */
+/* Centered image */
 .lightbox-img {
   max-width: 90vw;
   max-height: 90vh;
