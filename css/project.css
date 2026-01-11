@@ -17,9 +17,7 @@ body {
   transition: color 0.3s ease;
 }
 
-.back-btn a:hover {
-  color:#1a1a1a;
-}
+.back-btn a:hover { color:#1a1a1a; }
 
 .project-container {
   max-width: 1000px;
@@ -35,7 +33,7 @@ body {
 }
 
 .main-project img, .main-project iframe {
-  max-width: 480px;
+  max-width: 600px;
   width: 100%;
   height: auto;
 }
@@ -57,13 +55,55 @@ body {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
+  margin-top: 20px;
 }
 
 .project-gallery img {
   width: calc(33% - 10px);
+  aspect-ratio: 16 / 9;
   object-fit: cover;
+  cursor: pointer;
+  transition: transform 0.3s ease;
 }
 
+.project-gallery img:hover { transform: scale(1.05); }
+
+/* Lightbox */
+.lightbox {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  left:0;
+  top:0;
+  width:100%;
+  height:100%;
+  background: rgba(0,0,0,0.9);
+  justify-content:center;
+  align-items:center;
+}
+
+.lightbox-img {
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
+}
+
+.lightbox .close,
+.lightbox .prev,
+.lightbox .next {
+  position: absolute;
+  color: #fff;
+  font-size: 2rem;
+  font-weight: bold;
+  cursor: pointer;
+  user-select: none;
+}
+
+.lightbox .close { top: 20px; right: 30px; }
+.lightbox .prev { top: 50%; left: 30px; transform: translateY(-50%); }
+.lightbox .next { top: 50%; right: 30px; transform: translateY(-50%); }
+
+/* Responsive adjustments */
 @media(max-width:900px){
   .main-project {flex-direction: column; align-items:center;}
   .project-gallery img {width:100%;}
