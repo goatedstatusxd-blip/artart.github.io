@@ -31,7 +31,8 @@ const projects = [
     description: "Experimental video project.",
     gallery: [
       "assets/images/laukiniai/laukiniai1.png",
-      "assets/images/laukiniai/laukiniai2.png"
+      "assets/images/laukiniai/laukiniai2.png",
+      "assets/images/laukiniai/laukiniai3.png"
     ]
   },
   {
