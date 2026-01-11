@@ -27,7 +27,7 @@ const projects = [
     type: "photo",
     thumbnail: "assets/images/antradienis/antradienis1.png",
     link: "assets/images/antradienis/antradienis1.png",
-    description: "Photography series exploring everyday life.",
+    description: "Šioje fotografijų serijoje siekiau užfiksuoti laiko tėkmės santykį su žmogumi, kaip pats antradienis gali būti visiškai kitoks priklausomai nuo to, kuriame gyvenimo etape esame. Antradienis yra tarsi įprasta darbo diena, esanti nei savaitės pradžioje, nei pabaigoje, todėl ji gali atskleisti darbo dienos rutiną arba priešingai -  žmonių veiklas, kurių gyvenimas neparemtas įprastu darbo savaitės grafiku. Fotografavau nespalvotai, kad išryškinčiau subjektų gyvenimų ir veiklų kontrastingumą.",
     gallery: [
       { type: "photo", link: "assets/images/antradienis/antradienis2.png" },
       { type: "photo", link: "assets/images/antradienis/antradienis3.png" }
