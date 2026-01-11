@@ -5,103 +5,67 @@ body {
   background: #fafafa;
 }
 
-/* Vertical top-left navigation - alternative lowkey style */
-.top-nav a {
-  padding: 8px 14px;
-  font-weight: 600;
-  text-transform: uppercase;
-  font-size: 0.85rem;
-  text-decoration: none;
-  color: #1a1a1a;                  /* subtle black text */
-  background: rgba(255, 255, 255, 0.65); /* slightly transparent */
-  border: 1px solid rgba(0,0,0,0.1);     /* soft border */
-  border-radius: 4px;               /* small rounding */
-  transition: all 0.25s ease;
-}
-
-/* Hover effect: subtle, alternative */
-.top-nav a:hover {
-  background: rgba(159, 11, 14, 0.85); /* soft burgundy */
-  color: #fff;                          /* white text on hover */
-  transform: translateX(1px);           /* tiny hover shift */
-  box-shadow: none;                     /* remove heavy shadow */
-}
-
-.top-nav a:hover {
-  background: #9F0B0E;
-  color: #fff;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 14px rgba(0,0,0,0.25);
-}
-
-/* Hero Banner - responsive and natural aspect ratio */
+/* Hero Banner */
 .hero {
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 20px; /* space from top */
+  margin-top: 20px;
 }
 
 .hero img {
-  width: auto;           /* natural width */
-  max-width: 90%;        /* never exceed 90% of screen width */
-  height: auto;          /* maintain aspect ratio */
-  max-height: 250px;     /* limit the height on desktop */
-  object-fit: contain;   /* keep original proportions */
+  width: auto;
+  max-width: 90%;
+  height: auto;
+  max-height: 250px;
+  object-fit: contain;
 }
 
-/* Mobile adjustments */
 @media (max-width: 900px) {
-  .hero img {
-    max-height: 180px;   /* smaller height on tablets/small screens */
-    max-width: 95%;      /* a bit wider to fill space nicely */
-  }
+  .hero img { max-height: 180px; max-width: 95%; }
 }
-
 @media (max-width: 600px) {
-  .hero img {
-    max-height: 150px;   /* even smaller on phones */
-    max-width: 98%;      /* almost full width */
-  }
+  .hero img { max-height: 150px; max-width: 98%; }
 }
 
+/* About Me Section */
+.about-section {
+  max-width: 900px;
+  margin: 0 auto 40px auto;
+  padding: 20px;
+}
 
+.about-section h2 {
+  font-weight: bold;
+  font-size: 2rem;
+  margin-bottom: 15px;
+}
+
+.about-section p {
+  font-size: 1rem;
+  color: #1a1a1a;
+  line-height: 1.5;
+}
 
 /* Projects Grid */
 .project-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 10px;
-  margin-top: 20px;
-  justify-content: center; /* centers the grid */
+  justify-content: center;
+  margin-bottom: 40px;
 }
 
 /* Responsive grid */
-@media (max-width:1200px){ 
-  .project-grid{
-    grid-template-columns:repeat(3,1fr);
-    justify-content: center;
-  } 
-}
-@media (max-width:900px){ 
-  .project-grid{
-    grid-template-columns:repeat(2,1fr);
-    justify-content: center;
-  } 
-}
-@media (max-width:600px){ 
-  .project-grid{
-    grid-template-columns:1fr;
-    justify-content: center;
-  } 
-}
-
+@media (max-width:1200px){ .project-grid{grid-template-columns:repeat(3,1fr);} }
+@media (max-width:900px){ .project-grid{grid-template-columns:repeat(2,1fr);} }
+@media (max-width:600px){ .project-grid{grid-template-columns:1fr;} }
 
 /* Project items */
 .project-item {
   width: 100%;
-  aspect-ratio: 1 / 1; /* square images */
+  aspect-ratio: 1 / 1;
   overflow: hidden;
   position: relative;
 }
@@ -109,7 +73,7 @@ body {
 .project-item img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* crop/fill so all images same size */
+  object-fit: cover;
   display: block;
   transition: transform 0.3s ease, filter 0.3s ease;
 }
