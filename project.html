@@ -15,12 +15,13 @@
 <div class="lightbox" id="lightbox">
   <span class="close">&times;</span>
   <span class="prev">&#10094;</span>
-  <img class="lightbox-img">
+  <img class="lightbox-img" alt="">
   <span class="next">&#10095;</span>
 </div>
 
 <script src="js/projects.js"></script>
 <script>
+/* GET PROJECT */
 const params = new URLSearchParams(window.location.search);
 const title = params.get("project");
 const project = projects.find(p => p.title === title);
@@ -35,48 +36,49 @@ if (!project) {
 /* MAIN MEDIA */
 const mainMedia = project.type === "video"
   ? `<iframe src="${project.link}" allowfullscreen></iframe>`
-  : `<img src="${project.link}">`;
+  : `<img src="${project.link}" alt="${project.title}">`;
 
 container.innerHTML = `
   <div class="main-project">
     <div class="main-media">${mainMedia}</div>
     <div class="project-info">
       <h1>${project.title.toUpperCase()}</h1>
-      <p>${project.description}</p>
+      <p>${project.description || ""}</p>
     </div>
   </div>
 
   <div class="project-gallery">
     ${project.gallery.map((img, i) =>
-      `<img src="${img}" data-index="${i}">`
+      `<img src="${img}" data-index="${i}" alt="">`
     ).join("")}
   </div>
 `;
 
-/* LIGHTBOX */
+/* LIGHTBOX LOGIC */
 const lightbox = document.getElementById("lightbox");
 const lightboxImg = document.querySelector(".lightbox-img");
 const galleryImgs = document.querySelectorAll(".project-gallery img");
-let current = 0;
+let currentIndex = 0;
 
 function openLightbox(index) {
-  current = index;
-  lightbox.style.display = "flex";
-  lightboxImg.src = project.gallery[current];
+  currentIndex = Number(index);
+  lightboxImg.src = project.gallery[currentIndex];
+  lightbox.classList.add("open");
 }
 
 function closeLightbox() {
-  lightbox.style.display = "none";
+  lightbox.classList.remove("open");
+  lightboxImg.src = "";
 }
 
-function next() {
-  current = (current + 1) % project.gallery.length;
-  lightboxImg.src = project.gallery[current];
+function nextImage() {
+  currentIndex = (currentIndex + 1) % project.gallery.length;
+  lightboxImg.src = project.gallery[currentIndex];
 }
 
-function prev() {
-  current = (current - 1 + project.gallery.length) % project.gallery.length;
-  lightboxImg.src = project.gallery[current];
+function prevImage() {
+  currentIndex = (currentIndex - 1 + project.gallery.length) % project.gallery.length;
+  lightboxImg.src = project.gallery[currentIndex];
 }
 
 galleryImgs.forEach(img =>
@@ -84,12 +86,13 @@ galleryImgs.forEach(img =>
 );
 
 document.querySelector(".close").onclick = closeLightbox;
-document.querySelector(".next").onclick = next;
-document.querySelector(".prev").onclick = prev;
+document.querySelector(".next").onclick = nextImage;
+document.querySelector(".prev").onclick = prevImage;
 
-lightbox.onclick = e => {
+lightbox.addEventListener("click", e => {
   if (e.target === lightbox) closeLightbox();
-};
+});
 </script>
+
 </body>
 </html>
