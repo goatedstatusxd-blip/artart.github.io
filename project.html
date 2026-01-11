@@ -43,6 +43,27 @@ if(project){
     mainItem = `<img src="${project.link}" alt="${project.title}">`;
   }
 
+  // Inside your existing project.html script
+const galleryImages = project.gallery || [];
+
+container.innerHTML = `
+  <div class="main-project">
+    ${project.type === 'video'
+      ? `<iframe src="${project.link}" frameborder="0" allowfullscreen></iframe>`
+      : `<img src="${project.link}" alt="${project.title}">`}
+    <div class="project-info">
+      <h1>${project.title.toUpperCase()}</h1>
+      <p>${project.description || ''}</p>
+    </div>
+  </div>
+
+  <!-- Gallery -->
+  <div class="project-gallery">
+    ${galleryImages.map((img, i) => `<img src="${img}" data-index="${i}" alt="Gallery Image ${i+1}">`).join('')}
+  </div>
+`;
+
+
   // For demonstration, gallery includes main thumbnail + additional (can extend)
   const galleryImages = [project.thumbnail];
 
