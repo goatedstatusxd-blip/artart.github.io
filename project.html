@@ -47,11 +47,13 @@ container.innerHTML = `
     </div>
   </div>
 
-  <div class="project-gallery">
-    ${project.gallery.map((img, i) =>
-      `<img src="${img}" data-index="${i}" alt="">`
-    ).join("")}
-  </div>
+ <div class="project-gallery">
+  ${project.gallery.map((item, i) => {
+    const src = typeof item === "string" ? item : item.link;
+    return `<img src="${src}" data-index="${i}" alt="">`;
+  }).join("")}
+</div>
+
 `;
 
 /* LIGHTBOX LOGIC */
@@ -62,7 +64,9 @@ let currentIndex = 0;
 
 function openLightbox(index) {
   currentIndex = Number(index);
-  lightboxImg.src = project.gallery[currentIndex];
+ const item = project.gallery[currentIndex];
+lightboxImg.src = typeof item === "string" ? item : item.link;
+
   lightbox.classList.add("open");
 }
 
@@ -73,12 +77,16 @@ function closeLightbox() {
 
 function nextImage() {
   currentIndex = (currentIndex + 1) % project.gallery.length;
-  lightboxImg.src = project.gallery[currentIndex];
+  const item = project.gallery[currentIndex];
+lightboxImg.src = typeof item === "string" ? item : item.link;
+
 }
 
 function prevImage() {
   currentIndex = (currentIndex - 1 + project.gallery.length) % project.gallery.length;
-  lightboxImg.src = project.gallery[currentIndex];
+const item = project.gallery[currentIndex];
+lightboxImg.src = typeof item === "string" ? item : item.link;
+
 }
 
 galleryImgs.forEach(img =>
