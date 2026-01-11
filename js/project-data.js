@@ -22,6 +22,16 @@ const projects = [
       { type: "video", link: "https://drive.google.com/file/d/1EPTAeF77ZEEp9xZeQ5n1I69FFpjbLRLr/preview" }
     ]
   },
+    {
+    title: "Laukiniai",
+    type: "photo",
+    thumbnail: "assets/images/laukiniai/laukiniai1.png",
+    link: "assets/images/laukiniai/laukiniai1.png",
+    description: "Short film produced for radio project.",
+    gallery: [
+      { type: "photo", link: "assets/images/laukiniai/laukiniai1.png" }
+    ]
+  },
   {
     title: "Antradienis",
     type: "photo",
