@@ -122,3 +122,19 @@ body {
     transform: scale(1);
   }
 }
+
+/* ABOUT PAGE */
+.about-container {
+  padding: 60px 40px;
+}
+
+.about-content {
+  max-width: 700px;
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.about-content h1 {
+  font-size: 32px;
+  margin-bottom: 20px;
+}
