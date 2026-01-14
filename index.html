@@ -2,50 +2,55 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Aura Vilkisiute Portfolio</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <title>Aura Vilkisiute</title>
   <link rel="stylesheet" href="css/style.css">
-  <link rel="icon" type="image/png" href="/images/banner.png">
 </head>
 <body>
 
-<div class="container-fluid">
-  <!-- Hero Banner -->
-  <section id="hero" class="hero mb-4">
-    <img src="assets/images/banner.png" alt="Portfolio Banner">
-  </section>
+<!-- TOP BAR -->
+<header class="top-bar">
+  <div class="name-pill">aura vilkisiute</div>
 
-  <!-- About Me Section -->
-  <section id="about" class="about-section mb-4">
-    <div class="container text-center">
-      <h2>About Me</h2>
-      <p>
-        Hello!
-      </p>
-    </div>
-  </section>
+  <nav class="filters">
+    <button data-filter="all" class="active">Photography</button>
+    <button data-filter="film">Film</button>
+    <button data-filter="other">Other</button>
+  </nav>
 
-  <!-- Projects Grid -->
-  <section id="projects" class="project-grid"></section>
-</div>
+  <a href="about.html" class="about-link">About Me</a>
+</header>
+
+<!-- PROJECT GRID -->
+<main class="projects-grid" id="projectsGrid"></main>
 
 <script src="js/projects.js"></script>
 <script>
-const grid = document.querySelector(".project-grid");
+const grid = document.getElementById("projectsGrid");
 
-function createCard(project) {
-  const projectURL = `project.html?project=${encodeURIComponent(project.title)}`;
-  return `
-    <div class="project-item">
-      <a href="${projectURL}">
-        <img src="${project.thumbnail}" alt="${project.title}">
-        <div class="project-overlay"><span>${project.title}</span></div>
-      </a>
-    </div>
-  `;
+function renderProjects(filter = "all") {
+  grid.innerHTML = "";
+  projects
+    .filter(p => filter === "all" || p.type === filter)
+    .forEach(project => {
+      grid.innerHTML += `
+        <a href="project.html?project=${encodeURIComponent(project.title)}"
+           class="project-tile">
+          <img src="${project.thumbnail}" alt="${project.title}">
+        </a>
+      `;
+    });
 }
 
-projects.forEach(p => grid.innerHTML += createCard(p));
+renderProjects();
+
+document.querySelectorAll(".filters button").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".filters button").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    renderProjects(btn.dataset.filter);
+  });
+});
 </script>
+
 </body>
 </html>
