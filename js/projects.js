@@ -48,3 +48,47 @@ const projects = [
     ]
   }
 ];
+
+const gallery = document.getElementById("gallery");
+const buttons = document.querySelectorAll(".filter-btn");
+
+function renderProjects(filter) {
+  gallery.innerHTML = "";
+
+  projects
+    .filter(p => filter === "all" || p.type === filter)
+    .forEach((project, index) => {
+      const div = document.createElement("div");
+      div.className = "project fade-in";
+      div.style.animationDelay = `${index * 80}ms`;
+
+      div.innerHTML = `
+        <img src="${project.image}" alt="${project.title}">
+        <div class="project-overlay">
+          <div class="project-title">${project.title}</div>
+        </div>
+      `;
+
+      gallery.appendChild(div);
+    });
+}
+
+function changeFilter(filter) {
+  const items = document.querySelectorAll(".project");
+
+  items.forEach(item => item.classList.add("fade-out"));
+
+  setTimeout(() => {
+    renderProjects(filter);
+  }, 250);
+}
+
+buttons.forEach(btn => {
+  btn.addEventListener("click", () => {
+    buttons.forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    changeFilter(btn.dataset.filter);
+  });
+});
+
+renderProjects("all");
