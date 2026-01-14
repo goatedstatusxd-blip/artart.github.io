@@ -22,7 +22,7 @@ body {
 
 /* LOGO / BANNER IMAGE */
 .logo-banner {
-  height: 8px;            /* controls size */
+  height: 24px;            /* controls size */
   width: auto;
   object-fit: contain;
   display: block;
