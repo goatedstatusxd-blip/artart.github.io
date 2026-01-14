@@ -1,90 +1,103 @@
+/* RESET */
 * {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-  font-family: Arial, sans-serif;
 }
 
 body {
-  background: #ffffff;
+  font-family: Helvetica, Arial, sans-serif;
+  background: #fff;
   color: #000;
 }
 
-/* HEADER */
+/* TOP BAR */
 .top-bar {
-  display: flex;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
   align-items: center;
-  justify-content: space-between;
-  padding: 25px 40px;
+  padding: 24px 32px;
+  gap: 32px;
 }
 
-.banner {
-  height: 40px;
+/* LOGO / BANNER IMAGE */
+.logo-banner {
+  height: 38px;            /* controls size */
+  width: auto;
+  object-fit: contain;
+  display: block;
 }
 
+/* FILTERS */
 .filters {
   display: flex;
-  gap: 20px;
+  gap: 32px;
 }
 
-.filter-btn {
+.filters button {
   background: none;
   border: none;
-  font-size: 16px;
+  font-size: 1.1rem;
   cursor: pointer;
   padding-bottom: 4px;
 }
 
-.filter-btn.active {
-  border-bottom: 2px solid black;
+.filters button.active {
+  border-bottom: 2px solid #000;
 }
 
+/* ABOUT LINK */
 .about-link {
   text-decoration: none;
-  color: black;
-  font-size: 16px;
+  color: #000;
+  font-size: 1.1rem;
 }
 
-/* GALLERY */
-.gallery {
+/* PROJECT GRID */
+.projects-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
-  padding: 40px;
+  gap: 32px;
+  padding: 32px;
 }
 
-.project {
-  position: relative;
-  aspect-ratio: 1 / 1;
+/* PROJECT TILE */
+.project-tile {
+  width: 100%;
+  aspect-ratio: 4 / 3;
   overflow: hidden;
-  cursor: pointer;
-  background: #4caf50; /* green placeholder */
+  display: block;
 }
 
-.project img {
+.project-tile img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform 0.3s ease;
 }
 
-/* HOVER OVERLAY */
-.project-overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,0.6);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  transition: opacity 0.3s ease;
+.project-tile:hover img {
+  transform: scale(1.03);
 }
 
-.project:hover .project-overlay {
-  opacity: 1;
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
-.project-title {
-  color: white;
-  font-size: 18px;
-  text-align: center;
+@media (max-width: 600px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .top-bar {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .filters {
+    gap: 16px;
+  }
 }
