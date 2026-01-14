@@ -1,32 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
   <title>Aura Vilkisiute</title>
-
-  <link rel="stylesheet" href="style.css" />
-  <link rel="icon" href="favicon.ico" />
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-  <!-- HEADER -->
-  <header class="top-bar">
-    <img src="banner.png" alt="Aura Vilkisiute" class="banner" />
+<!-- TOP BAR -->
+<header class="top-bar">
+  <img src="assets/images/banner.png" alt="Aura Vilkisiute" class="logo-banner">
 
-    <nav class="filters">
-      <button class="filter-btn active" data-filter="all">All</button>
-      <button class="filter-btn" data-filter="photography">Photography</button>
-      <button class="filter-btn" data-filter="film">Film</button>
-      <button class="filter-btn" data-filter="other">Other</button>
-    </nav>
 
-    <a href="about.html" class="about-link">About Me</a>
-  </header>
+  <nav class="filters">
+  <button data-filter="all" class="active">All</button>
+  <button data-filter="photography">Photography</button>
+  <button data-filter="film">Film</button>
+  <button data-filter="other">Other</button>
+</nav>
 
-  <!-- PROJECT GRID -->
-  <main class="gallery" id="gallery"></main>
 
-  <script src="script.js"></script>
+  <a href="about.html" class="about-link">About Me</a>
+</header>
+
+<!-- PROJECT GRID -->
+<main class="projects-grid" id="projectsGrid"></main>
+
+<script src="js/projects.js"></script>
+<script>
+const grid = document.getElementById("projectsGrid");
+
+function renderProjects(filter = "all") {
+  grid.innerHTML = "";
+  projects
+    .filter(p => filter === "all" || p.type === filter)
+    .forEach(project => {
+      grid.innerHTML += `
+        <a href="project.html?project=${encodeURIComponent(project.title)}"
+           class="project-tile">
+          <img src="${project.thumbnail}" alt="${project.title}">
+        </a>
+      `;
+    });
+}
+
+renderProjects();
+
+document.querySelectorAll(".filters button").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".filters button").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    renderProjects(btn.dataset.filter);
+  });
+});
+</script>
+
 </body>
 </html>
