@@ -34,10 +34,15 @@ function renderProjects(filter = "all") {
     .filter(p => filter === "all" || p.type === filter)
     .forEach(project => {
       grid.innerHTML += `
-        <a href="project.html?project=${encodeURIComponent(project.title)}"
-           class="project-tile">
-          <img src="${project.thumbnail}" alt="${project.title}">
-        </a>
+  <a href="project.html?project=${encodeURIComponent(project.title)}"
+     class="project-tile">
+    <img src="${project.thumbnail}" alt="${project.title}">
+    <div class="project-hover">
+      <span>${project.title}</span>
+    </div>
+  </a>
+`;
+
       `;
     });
 }
