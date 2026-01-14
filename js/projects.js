@@ -1,7 +1,7 @@
 const projects = [
   {
     title: "Kur Sea Vai",
-    type: "Film",
+    type: "film",
     thumbnail: "assets/images/kur sea vai/kadrai1.png",
     link: "https://www.youtube.com/embed/ol1oq-GpWec",
     description: "Short film directed by Aura Vilkisiute.",
@@ -13,7 +13,7 @@ const projects = [
   },
   {
     title: "Radio",
-    type: "Film",
+    type: "film",
     thumbnail: "assets/images/radio/radio1.png",
     link: "https://drive.google.com/file/d/1EPTAeF77ZEEp9xZeQ5n1I69FFpjbLRLr/preview",
     description: "Experimental video project.",
@@ -25,7 +25,7 @@ const projects = [
   },
    {
     title: "Laukiniai",
-    type: "Photography",
+    type: "photography",
     thumbnail: "assets/images/laukiniai/laukiniai1.png",
     link: "assets/images/laukiniai/laukiniai1.png",
     description: "Experimental video project.",
@@ -37,7 +37,7 @@ const projects = [
   },
   {
     title: "Antradienis",
-    type: "Photography",
+    type: "photography",
     thumbnail: "assets/images/antradienis/antradienis1.png",
     link: "assets/images/antradienis/antradienis1.png",
     description: "Photography series.",
