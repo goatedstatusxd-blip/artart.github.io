@@ -13,11 +13,11 @@ body {
 
 /* TOP BAR */
 .top-bar {
-  display: grid;
-  grid-template-columns: auto 1fr auto;
+  display: flex;
   align-items: center;
+  justify-content: space-between; /* logo left, filters + about right */
   padding: 24px 32px;
-  gap: 32px;
+  gap: 16px;
 }
 
 /* LOGO / BANNER IMAGE */
@@ -212,4 +212,15 @@ body {
 
 .hidden {
   display: none;
+}
+#about-btn {
+  margin-left: auto; /* pushes it to the far right */
+  background: none;
+  border: none;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+.filter-btn.active {
+  border-bottom: 2px solid #000;
 }
