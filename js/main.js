@@ -11,70 +11,70 @@ const modalDescription = document.getElementById("modal-description");
 const modalGallery = document.getElementById("modal-gallery");
 const modalClose = document.querySelector(".modal-close");
 
-// OPEN MODAL
+// MODAL FUNCTIONS
 function openProjectModal(project) {
-  modal.classList.remove("fade-out");
-  modal.classList.add("show", "fade-in");
+  // Main media
+  if (project.link.includes("youtube") || project.link.includes("drive")) {
+    modalMain.innerHTML = `<iframe src="${project.link}" frameborder="0" allowfullscreen></iframe>`;
+  } else {
+    modalMain.innerHTML = `<img src="${project.link}" alt="${project.title}">`;
+  }
 
-  const setMainMedia = (item) => {
-    if(item.includes("youtube") || item.includes("drive")){
-      modalMain.innerHTML = `<iframe src="${item}" frameborder="0" allowfullscreen></iframe>`;
-    } else {
-      modalMain.innerHTML = `<img src="${item}" alt="${project.title}">`;
-    }
-  };
-
-  setMainMedia(project.link);
-
+  // Title + description
   modalTitle.textContent = project.title;
   modalDescription.textContent = project.description;
 
+  // Gallery thumbnails
   modalGallery.innerHTML = "";
   project.gallery.forEach((item, index) => {
     const thumb = document.createElement("img");
     thumb.src = item;
-    if(index === 0) thumb.classList.add("active");
-
+    if (index === 0) thumb.classList.add("active");
     thumb.addEventListener("click", () => {
-      setMainMedia(item);
       modalGallery.querySelectorAll("img").forEach(img => img.classList.remove("active"));
       thumb.classList.add("active");
-      thumb.scrollIntoView({behavior: "smooth", inline: "center"});
+      if (item.includes("youtube") || item.includes("drive")) {
+        modalMain.innerHTML = `<iframe src="${item}" frameborder="0" allowfullscreen></iframe>`;
+      } else {
+        modalMain.innerHTML = `<img src="${item}" alt="${project.title}">`;
+      }
     });
-
     modalGallery.appendChild(thumb);
   });
+
+  modal.classList.add("show");
 }
 
-// CLOSE MODAL
-function closeModal(){
-  modal.classList.remove("fade-in");
-  modal.classList.add("fade-out");
-  setTimeout(()=>{ modal.classList.remove("show","fade-out"); },300);
-}
+// Close modal
+modalClose.addEventListener("click", () => {
+  modal.classList.remove("show");
+});
 
-modalClose.addEventListener("click", closeModal);
-modal.addEventListener("click", (e)=>{ if(e.target === modal) closeModal(); });
+// Close modal by clicking outside window
+modal.addEventListener("click", (e) => {
+  if (e.target === modal) {
+    modal.classList.remove("show");
+  }
+});
 
-// ATTACH CLICK TO PROJECTS
-function attachProjectClick(){
-  document.querySelectorAll(".project-tile").forEach((tile,index)=>{
-    tile.addEventListener("click",(e)=>{
+// RENDER PROJECTS
+function attachProjectClick() {
+  document.querySelectorAll(".project-tile").forEach((tile, index) => {
+    tile.addEventListener("click", (e) => {
       e.preventDefault();
       openProjectModal(projects[index]);
     });
   });
 }
 
-// RENDER PROJECTS
-function renderProjects(filter="all"){
-  grid.innerHTML="";
+function renderProjects(filter = "all") {
+  grid.innerHTML = "";
   grid.classList.remove("hidden");
   about.classList.add("hidden");
 
-  const filtered = projects.filter(p => filter==="all" || p.type===filter);
-  filtered.forEach(project=>{
-    grid.innerHTML+=`
+  const filtered = projects.filter(p => filter === "all" || p.type === filter);
+  filtered.forEach(project => {
+    grid.innerHTML += `
       <a class="project-tile fade-in" href="${project.link}">
         <img src="${project.thumbnail}" alt="${project.title}">
         <div class="project-hover">
@@ -88,29 +88,32 @@ function renderProjects(filter="all"){
 }
 
 // FILTERS + ABOUT ME
-function showFilter(filter){
-  buttons.forEach(b=>b.classList.remove("active"));
+function showFilter(filter) {
+  buttons.forEach(b => b.classList.remove("active"));
   aboutBtn.classList.remove("active");
 
-  if(filter==="about"){
+  if (filter === "about") {
     aboutBtn.classList.add("active");
     grid.classList.add("hidden");
     about.classList.remove("hidden");
   } else {
     const btn = document.querySelector(`[data-filter="${filter}"]`);
-    if(btn) btn.classList.add("active");
+    if (btn) btn.classList.add("active");
     renderProjects(filter);
   }
 
-  window.history.replaceState(null,'','#'+filter);
+  window.history.replaceState(null, '', '#' + filter);
 }
 
-buttons.forEach(btn=>btn.addEventListener("click",()=>showFilter(btn.dataset.filter)));
-aboutBtn.addEventListener("click",()=>showFilter("about"));
+buttons.forEach(btn => btn.addEventListener("click", () => showFilter(btn.dataset.filter)));
+aboutBtn.addEventListener("click", () => showFilter("about"));
 
 // LOAD ON PAGE LOAD
-window.addEventListener("load",()=>{
+window.addEventListener("load", () => {
   const hash = window.location.hash.replace('#','');
-  if(hash) showFilter(hash);
-  else showFilter("all");
+  if(hash) {
+    showFilter(hash);
+  } else {
+    showFilter("all");
+  }
 });
