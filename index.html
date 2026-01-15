@@ -1,3 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Portfolio – Aura Vilkisiute</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- TOP BAR -->
 <header class="top-bar">
   <a href="#">
     <img src="assets/images/banner.png" alt="Aura Vilkisiute" class="logo-banner">
@@ -10,12 +20,11 @@
     <button class="filter-btn" data-filter="other">Other</button>
   </nav>
 
-  <!-- About Me link in top-right -->
   <button id="about-btn" class="filter-btn">About Me</button>
 </header>
 
 <main>
-  <!-- PROJECTS -->
+  <!-- PROJECTS GRID -->
   <div class="projects-grid">
     <div class="project-tile" data-category="photography">
       <img src="assets/images/photo1.jpg" alt="">
@@ -32,14 +41,13 @@
     <!-- Add more projects here -->
   </div>
 
-  <!-- ABOUT ME -->
+  <!-- ABOUT ME SECTION -->
   <div class="about-container hidden">
     <section class="about-content">
       <div class="about-text">
         <h1>About Me</h1>
         <p>
           I am an interdisciplinary artist working across photography, film, and visual experimentation. 
-  
         </p>
       </div>
       <div class="about-meta">
@@ -51,3 +59,56 @@
     </section>
   </div>
 </main>
+
+<!-- JAVASCRIPT FOR FILTERING -->
+<script>
+const filterButtons = document.querySelectorAll('.filter-btn');
+const projects = document.querySelectorAll('.project-tile');
+const aboutSection = document.querySelector('.about-container');
+
+function showFilter(filter) {
+  // Remove active class from all
+  filterButtons.forEach(btn => btn.classList.remove('active'));
+
+  if(filter === 'about') {
+    document.querySelector('#about-btn').classList.add('active');
+    aboutSection.classList.remove('hidden');
+    projects.forEach(p => p.classList.add('hidden'));
+  } else if(filter === 'all') {
+    document.querySelector('[data-filter="all"]').classList.add('active');
+    aboutSection.classList.add('hidden');
+    projects.forEach(p => p.classList.remove('hidden'));
+  } else {
+    document.querySelector(`[data-filter="${filter}"]`).classList.add('active');
+    aboutSection.classList.add('hidden');
+    projects.forEach(p => {
+      if(p.dataset.category === filter) p.classList.remove('hidden');
+      else p.classList.add('hidden');
+    });
+  }
+
+  // Update URL hash without reload
+  window.history.replaceState(null, '', '#' + filter);
+}
+
+// Event listeners
+filterButtons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    const filter = btn.dataset.filter || (btn.id === 'about-btn' ? 'about' : 'all');
+    showFilter(filter);
+  });
+});
+
+// On page load, read hash
+window.addEventListener('load', () => {
+  const hash = window.location.hash.replace('#','');
+  if(hash) {
+    showFilter(hash);
+  } else {
+    showFilter('all');
+  }
+});
+</script>
+
+</body>
+</html>
