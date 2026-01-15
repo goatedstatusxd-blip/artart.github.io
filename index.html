@@ -1,50 +1,53 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Aura Vilkisiute</title>
-  <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-
-<!-- TOP BAR -->
 <header class="top-bar">
-  <img src="assets/images/banner.png" alt="Aura Vilkisiute" class="logo-banner">
+  <a href="#">
+    <img src="assets/images/banner.png" alt="Aura Vilkisiute" class="logo-banner">
+  </a>
 
   <nav class="filters">
-    <button data-filter="all" class="active">All</button>
-    <button data-filter="photography">Photography</button>
-    <button data-filter="film">Film</button>
-    <button data-filter="other">Other</button>
-    <button data-filter="about">About</button>
+    <button class="filter-btn" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="photography">Photography</button>
+    <button class="filter-btn" data-filter="film">Film</button>
+    <button class="filter-btn" data-filter="other">Other</button>
   </nav>
+
+  <!-- About Me link in top-right -->
+  <button id="about-btn" class="filter-btn">About Me</button>
 </header>
 
-<!-- PROJECT GRID -->
-<main class="projects-grid" id="projectsGrid"></main>
-
-<!-- ABOUT SECTION -->
-<section class="about-container hidden" id="aboutSection">
-  <div class="about-content">
-    <div class="about-text">
-      <h1>About Me</h1>
-      <p>
-        I work across photography and film, exploring time, routine,
-        and observation.
-      </p>
+<main>
+  <!-- PROJECTS -->
+  <div class="projects-grid">
+    <div class="project-tile" data-category="photography">
+      <img src="assets/images/photo1.jpg" alt="">
+      <div class="project-hover"><span>Photo 1</span></div>
     </div>
-
-    <div class="about-meta">
-      <p><strong>Fields</strong></p>
-      <p>Photography</p>
-      <p>Film</p>
-      <p>Visual Art</p>
+    <div class="project-tile" data-category="film">
+      <img src="assets/images/film1.jpg" alt="">
+      <div class="project-hover"><span>Film 1</span></div>
     </div>
+    <div class="project-tile" data-category="other">
+      <img src="assets/images/other1.jpg" alt="">
+      <div class="project-hover"><span>Other 1</span></div>
+    </div>
+    <!-- Add more projects here -->
   </div>
-</section>
 
-<script src="js/projects.js"></script>
-<script src="js/main.js"></script>
-
-</body>
-</html>
+  <!-- ABOUT ME -->
+  <div class="about-container hidden">
+    <section class="about-content">
+      <div class="about-text">
+        <h1>About Me</h1>
+        <p>
+          I am an interdisciplinary artist working across photography, film, and visual experimentation. 
+  
+        </p>
+      </div>
+      <div class="about-meta">
+        <p><strong>Fields</strong></p>
+        <p>Photography</p>
+        <p>Film</p>
+        <p>Visual Art</p>
+      </div>
+    </section>
+  </div>
+</main>
