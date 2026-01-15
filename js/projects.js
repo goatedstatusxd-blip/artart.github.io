@@ -28,7 +28,7 @@ const projects = [
     type: "photography",
     thumbnail: "assets/images/laukiniai/laukiniai1.png",
     link: "assets/images/laukiniai/laukiniai1.png",
-    description: "Experimental video project.",
+    description: "Photography series.",
     gallery: [
       "assets/images/laukiniai/laukiniai1.png",
       "assets/images/laukiniai/laukiniai2.png",
