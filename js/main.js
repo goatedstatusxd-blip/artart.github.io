@@ -3,104 +3,6 @@ const about = document.getElementById("aboutSection");
 const buttons = document.querySelectorAll(".filters button");
 const aboutBtn = document.getElementById("about-btn");
 
-// Function to fade out an element
-function fadeOut(element, callback) {
-  element.style.opacity = 1;
-  element.style.transition = "opacity 0.3s ease";
-  element.style.opacity = 0;
-
-  setTimeout(() => {
-    if (callback) callback();
-  }, 300);
-}
-
-// Function to fade in an element
-function fadeIn(element) {
-  element.style.opacity = 0;
-  element.classList.remove("hidden");
-  element.style.transition = "opacity 0.3s ease";
-  requestAnimationFrame(() => {
-    element.style.opacity = 1;
-  });
-}
-
-// Render projects dynamically
-function renderProjects(filter = "all") {
-  grid.innerHTML = "";
-  projects
-    .filter(p => filter === "all" || p.type === filter)
-    .forEach(project => {
-      grid.innerHTML += `
-        <a class="project-tile fade-in" href="${project.link}" target="_blank">
-          <img src="${project.thumbnail}" alt="${project.title}">
-          <div class="project-hover">
-            <span>${project.title}</span>
-          </div>
-        </a>
-      `;
-    });
-}
-
-// Show About section
-function showAbout() {
-  about.classList.remove("hidden");
-}
-
-// Show filter with smooth transitions
-function showFilter(filter) {
-  // Remove active class from all
-  buttons.forEach(b => b.classList.remove("active"));
-  aboutBtn.classList.remove("active");
-
-  // Apply active class
-  if (filter === "about") {
-    aboutBtn.classList.add("active");
-  } else {
-    const btn = document.querySelector(`[data-filter="${filter}"]`);
-    if(btn) btn.classList.add("active");
-  }
-
-  // Fade out current content first
-  const visible = !grid.classList.contains("hidden") ? grid : about;
-  fadeOut(visible, () => {
-    // Hide both initially
-    grid.classList.add("hidden");
-    about.classList.add("hidden");
-
-    // Show the selected section
-    if (filter === "about") {
-      showAbout();
-      fadeIn(about);
-    } else {
-      renderProjects(filter);
-      fadeIn(grid);
-    }
-  });
-
-  // Update URL hash
-  window.history.replaceState(null, '', '#' + filter);
-}
-
-// Event listeners
-buttons.forEach(btn => {
-  btn.addEventListener("click", () => {
-    showFilter(btn.dataset.filter);
-  });
-});
-
-aboutBtn.addEventListener("click", () => {
-  showFilter("about");
-});
-
-// On page load, check URL hash
-window.addEventListener("load", () => {
-  const hash = window.location.hash.replace('#','');
-  if(hash) {
-    showFilter(hash);
-  } else {
-    showFilter("all");
-  }
-});
 // MODAL ELEMENTS
 const modal = document.getElementById("projectModal");
 const modalMain = document.getElementById("modal-main-media");
@@ -109,18 +11,20 @@ const modalDescription = document.getElementById("modal-description");
 const modalGallery = document.getElementById("modal-gallery");
 const modalClose = document.querySelector(".modal-close");
 
-// Open modal with project
+// MODAL FUNCTIONS
 function openProjectModal(project) {
   // Main media
-  modalMain.innerHTML = project.link.includes("youtube") || project.link.includes("drive")
-    ? `<iframe src="${project.link}" frameborder="0" allowfullscreen></iframe>`
-    : `<img src="${project.link}" alt="${project.title}">`;
+  if (project.link.includes("youtube") || project.link.includes("drive")) {
+    modalMain.innerHTML = `<iframe src="${project.link}" frameborder="0" allowfullscreen></iframe>`;
+  } else {
+    modalMain.innerHTML = `<img src="${project.link}" alt="${project.title}">`;
+  }
 
-  // Title and description
+  // Title + description
   modalTitle.textContent = project.title;
   modalDescription.textContent = project.description;
 
-  // Gallery
+  // Gallery thumbnails
   modalGallery.innerHTML = "";
   project.gallery.forEach((item, index) => {
     const thumb = document.createElement("img");
@@ -138,25 +42,31 @@ function openProjectModal(project) {
     modalGallery.appendChild(thumb);
   });
 
-  modal.classList.remove("hidden");
+  modal.classList.add("show");
 }
 
 // Close modal
 modalClose.addEventListener("click", () => {
-  modal.classList.add("hidden");
+  modal.classList.remove("show");
 });
 
-// Attach click event to project tiles
+// Close modal by clicking outside window
+modal.addEventListener("click", (e) => {
+  if (e.target === modal) {
+    modal.classList.remove("show");
+  }
+});
+
+// RENDER PROJECTS
 function attachProjectClick() {
   document.querySelectorAll(".project-tile").forEach((tile, index) => {
     tile.addEventListener("click", (e) => {
-      e.preventDefault(); // prevent following href
+      e.preventDefault();
       openProjectModal(projects[index]);
     });
   });
 }
 
-// Call after rendering projects
 function renderProjects(filter = "all") {
   grid.innerHTML = "";
   grid.classList.remove("hidden");
@@ -174,5 +84,36 @@ function renderProjects(filter = "all") {
     `;
   });
 
-  attachProjectClick(); // Attach modal click after rendering
+  attachProjectClick();
 }
+
+// FILTERS + ABOUT ME
+function showFilter(filter) {
+  buttons.forEach(b => b.classList.remove("active"));
+  aboutBtn.classList.remove("active");
+
+  if (filter === "about") {
+    aboutBtn.classList.add("active");
+    grid.classList.add("hidden");
+    about.classList.remove("hidden");
+  } else {
+    const btn = document.querySelector(`[data-filter="${filter}"]`);
+    if (btn) btn.classList.add("active");
+    renderProjects(filter);
+  }
+
+  window.history.replaceState(null, '', '#' + filter);
+}
+
+buttons.forEach(btn => btn.addEventListener("click", () => showFilter(btn.dataset.filter)));
+aboutBtn.addEventListener("click", () => showFilter("about"));
+
+// LOAD ON PAGE LOAD
+window.addEventListener("load", () => {
+  const hash = window.location.hash.replace('#','');
+  if(hash) {
+    showFilter(hash);
+  } else {
+    showFilter("all");
+  }
+});
