@@ -16,48 +16,39 @@
     <button data-filter="photography">Photography</button>
     <button data-filter="film">Film</button>
     <button data-filter="other">Other</button>
+    <button data-filter="about">About</button>
   </nav>
-
-  <a href="about.html" class="about-link">About Me</a>
 </header>
 
 <!-- PROJECT GRID -->
 <main class="projects-grid" id="projectsGrid"></main>
 
+<!-- ABOUT SECTION -->
+<section class="about-container hidden" id="aboutSection">
+  <div class="about-content">
+    <div class="about-text">
+      <h1>About Me</h1>
+      <p>
+        I work across photography and film, exploring time, routine,
+        and observation. My work focuses on subtle narratives and
+        atmosphere rather than explicit storytelling.
+      </p>
+      <p>
+        Currently based in Belgium.
+      </p>
+    </div>
+
+    <div class="about-meta">
+      <p><strong>Fields</strong></p>
+      <p>Photography</p>
+      <p>Film</p>
+      <p>Visual Art</p>
+    </div>
+  </div>
+</section>
+
 <script src="js/projects.js"></script>
-<script>
-const grid = document.getElementById("projectsGrid");
-
-function renderProjects(filter = "all") {
-  grid.innerHTML = "";
-
-  projects
-    .filter(p => filter === "all" || p.type === filter)
-    .forEach(project => {
-      grid.innerHTML += `
-        <a href="project.html?project=${encodeURIComponent(project.title)}"
-           class="project-tile fade-in">
-          <img src="${project.thumbnail}" alt="${project.title}">
-          <div class="project-hover">
-            <span>${project.title}</span>
-          </div>
-        </a>
-      `;
-    });
-}
-
-renderProjects();
-
-document.querySelectorAll(".filters button").forEach(btn => {
-  btn.addEventListener("click", () => {
-    document.querySelectorAll(".filters button")
-      .forEach(b => b.classList.remove("active"));
-
-    btn.classList.add("active");
-    renderProjects(btn.dataset.filter);
-  });
-});
-</script>
+<script src="js/main.js"></script>
 
 </body>
 </html>
