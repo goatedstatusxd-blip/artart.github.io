@@ -13,28 +13,27 @@ body {
 
 /* TOP BAR */
 .top-bar {
-  display: flex;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
   align-items: center;
-  justify-content: space-between;
   padding: 24px 32px;
-  gap: 16px;
+  gap: 32px;
 }
 
-/* LOGO / BANNER IMAGE */
 .logo-banner {
-  height: 42px;
+  height: 38px;
   width: auto;
   object-fit: contain;
   display: block;
 }
 
-/* FILTERS */
 .filters {
   display: flex;
-  gap: 16px;
+  gap: 32px;
 }
 
-.filters button, #about-btn {
+.filters button,
+#about-btn {
   background: none;
   border: none;
   font-size: 1.1rem;
@@ -42,7 +41,8 @@ body {
   padding-bottom: 4px;
 }
 
-.filter-btn.active {
+.filters button.active,
+#about-btn.active {
   border-bottom: 2px solid #000;
 }
 
@@ -54,13 +54,13 @@ body {
   padding: 32px;
 }
 
-/* PROJECT TILE */
 .project-tile {
   position: relative;
   width: 100%;
   aspect-ratio: 4 / 3;
   overflow: hidden;
   display: block;
+  cursor: pointer;
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
@@ -75,7 +75,6 @@ body {
   transform: scale(1.03);
 }
 
-/* PROJECT HOVER */
 .project-hover {
   position: absolute;
   inset: 0;
@@ -89,17 +88,17 @@ body {
 }
 
 .project-hover span {
-  color: #fff;
-  font-size: 1.1rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
+  color: white;
+  font-size: 18px;
+  letter-spacing: 0.04em;
+  text-align: center;
 }
 
 .project-tile:hover .project-hover {
   opacity: 1;
 }
 
-/* ABOUT SECTION */
+/* ABOUT PAGE */
 .about-container {
   padding: 32px;
 }
@@ -131,39 +130,7 @@ body {
   display: none;
 }
 
-/* FADE IN */
-.fade-in {
-  opacity: 0;
-  animation: fadeIn 0.4s ease forwards;
-}
-
-@keyframes fadeIn {
-  to { opacity: 1; }
-}
-
-/* RESPONSIVE */
-@media (max-width: 900px) {
-  .projects-grid, .about-content {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 600px) {
-  .projects-grid, .about-content {
-    grid-template-columns: 1fr;
-  }
-
-  .top-bar {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 16px;
-  }
-
-  .filters {
-    gap: 16px;
-  }
-}
-/* MODAL OVERLAY */
+/* MODAL */
 .modal {
   position: fixed;
   top: 0;
@@ -185,7 +152,6 @@ body {
   visibility: visible;
 }
 
-/* MODAL WINDOW */
 .modal-window {
   background: #fff;
   border-radius: 12px;
@@ -200,7 +166,6 @@ body {
   position: relative;
 }
 
-/* CLOSE BUTTON */
 .modal-close {
   position: absolute;
   top: 16px;
@@ -219,16 +184,16 @@ body {
   background: #ddd;
 }
 
-/* MODAL CONTENT */
 .modal-content {
   display: flex;
   height: 100%;
 }
 
-/* LEFT: MAIN MEDIA */
+/* LEFT: MAIN MEDIA + GALLERY */
 .modal-left {
   flex: 2;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   background: #f5f5f5;
@@ -244,7 +209,44 @@ body {
   border-radius: 8px;
 }
 
-/* RIGHT: TITLE + DESCRIPTION + GALLERY BELOW LEFT */
+.modal-gallery {
+  display: flex;
+  overflow-x: auto;
+  gap: 12px;
+  padding: 8px 0;
+  scroll-behavior: smooth;
+}
+
+.modal-gallery img {
+  flex: 0 0 auto;
+  width: 100px;
+  height: 70px;
+  object-fit: cover;
+  cursor: pointer;
+  border: 2px solid transparent;
+  border-radius: 6px;
+  transition: transform 0.2s, border 0.2s;
+}
+
+.modal-gallery img.active {
+  border-color: #000;
+  transform: scale(1.05);
+}
+
+.modal-gallery::-webkit-scrollbar {
+  height: 8px;
+}
+
+.modal-gallery::-webkit-scrollbar-thumb {
+  background: rgba(0,0,0,0.3);
+  border-radius: 4px;
+}
+
+.modal-gallery::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* RIGHT SIDE */
 .modal-right {
   flex: 1;
   display: flex;
@@ -266,30 +268,7 @@ body {
   line-height: 1.5;
 }
 
-/* GALLERY BELOW LEFT */
-.modal-gallery {
-  display: flex;
-  gap: 8px;
-  overflow-x: auto;
-  margin-top: 16px;
-  padding-bottom: 8px;
-}
-
-.modal-gallery img {
-  width: 100px;
-  height: 70px;
-  object-fit: cover;
-  cursor: pointer;
-  border: 2px solid transparent;
-  border-radius: 4px;
-  transition: border 0.2s;
-}
-
-.modal-gallery img.active {
-  border-color: #000;
-}
-
-/* FADE-IN/FADE-OUT ANIMATIONS */
+/* FADE ANIMATIONS */
 .modal.fade-in {
   animation: modalFadeIn 0.3s forwards;
 }
@@ -310,6 +289,9 @@ body {
 
 /* RESPONSIVE */
 @media (max-width: 900px) {
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
   .modal-content {
     flex-direction: column;
   }
@@ -320,9 +302,5 @@ body {
     height: 40%;
     padding: 16px;
     justify-content: flex-start;
-  }
-  .modal-gallery img {
-    width: 80px;
-    height: 60px;
   }
 }
