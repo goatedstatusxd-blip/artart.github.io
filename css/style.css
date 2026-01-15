@@ -123,18 +123,31 @@ body {
   }
 }
 
-/* ABOUT PAGE */
+/* ABOUT PAGE – MATCH INDEX LAYOUT */
 .about-container {
-  padding: 60px 40px;
+  padding: 32px;               /* SAME as projects-grid */
 }
 
 .about-content {
-  max-width: 700px;
+  max-width: none;             /* remove boxed feeling */
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* SAME grid logic */
+  gap: 32px;
+}
+
+.about-text {
+  grid-column: span 2;         /* text takes 2 columns */
   font-size: 18px;
   line-height: 1.6;
 }
 
-.about-content h1 {
+.about-text h1 {
   font-size: 32px;
   margin-bottom: 20px;
+}
+
+.about-meta {
+  font-size: 14px;
+  opacity: 0.7;
 }
