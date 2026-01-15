@@ -63,12 +63,14 @@ body {
 
 /* PROJECT TILE */
 .project-tile {
+  position: relative;                 /* REQUIRED for hover overlay */
   width: 100%;
   aspect-ratio: 4 / 3;
   overflow: hidden;
   display: block;
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
+
 
 .project-tile img {
   width: 100%;
@@ -80,6 +82,30 @@ body {
 .project-tile:hover img {
   transform: scale(1.03);
 }
+/* PROJECT HOVER TITLE */
+.project-hover {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none; /* keeps click behavior clean */
+}
+
+.project-hover span {
+  color: white;
+  font-size: 18px;
+  letter-spacing: 0.04em;
+  text-align: center;
+}
+
+.project-tile:hover .project-hover {
+  opacity: 1;
+}
+
 
 /* RESPONSIVE */
 @media (max-width: 900px) {
