@@ -3,12 +3,30 @@ const about = document.getElementById("aboutSection");
 const buttons = document.querySelectorAll(".filters button");
 const aboutBtn = document.getElementById("about-btn");
 
+// Function to fade out an element
+function fadeOut(element, callback) {
+  element.style.opacity = 1;
+  element.style.transition = "opacity 0.3s ease";
+  element.style.opacity = 0;
+
+  setTimeout(() => {
+    if (callback) callback();
+  }, 300);
+}
+
+// Function to fade in an element
+function fadeIn(element) {
+  element.style.opacity = 0;
+  element.classList.remove("hidden");
+  element.style.transition = "opacity 0.3s ease";
+  requestAnimationFrame(() => {
+    element.style.opacity = 1;
+  });
+}
+
 // Render projects dynamically
 function renderProjects(filter = "all") {
   grid.innerHTML = "";
-  grid.classList.remove("hidden");
-  about.classList.add("hidden");
-
   projects
     .filter(p => filter === "all" || p.type === filter)
     .forEach(project => {
@@ -25,25 +43,39 @@ function renderProjects(filter = "all") {
 
 // Show About section
 function showAbout() {
-  grid.classList.add("hidden");
   about.classList.remove("hidden");
 }
 
-// Show filter
+// Show filter with smooth transitions
 function showFilter(filter) {
+  // Remove active class from all
   buttons.forEach(b => b.classList.remove("active"));
   aboutBtn.classList.remove("active");
 
+  // Apply active class
   if (filter === "about") {
     aboutBtn.classList.add("active");
-    showAbout();
-  } else if (filter === "all") {
-    document.querySelector('[data-filter="all"]').classList.add("active");
-    renderProjects("all");
   } else {
-    document.querySelector(`[data-filter="${filter}"]`).classList.add("active");
-    renderProjects(filter);
+    const btn = document.querySelector(`[data-filter="${filter}"]`);
+    if(btn) btn.classList.add("active");
   }
+
+  // Fade out current content first
+  const visible = !grid.classList.contains("hidden") ? grid : about;
+  fadeOut(visible, () => {
+    // Hide both initially
+    grid.classList.add("hidden");
+    about.classList.add("hidden");
+
+    // Show the selected section
+    if (filter === "about") {
+      showAbout();
+      fadeIn(about);
+    } else {
+      renderProjects(filter);
+      fadeIn(grid);
+    }
+  });
 
   // Update URL hash
   window.history.replaceState(null, '', '#' + filter);
@@ -60,7 +92,7 @@ aboutBtn.addEventListener("click", () => {
   showFilter("about");
 });
 
-// Load correct filter on page load
+// On page load, check URL hash
 window.addEventListener("load", () => {
   const hash = window.location.hash.replace('#','');
   if(hash) {
