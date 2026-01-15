@@ -11,14 +11,12 @@
 <header class="top-bar">
   <img src="assets/images/banner.png" alt="Aura Vilkisiute" class="logo-banner">
 
-
   <nav class="filters">
-  <button data-filter="all" class="active">All</button>
-  <button data-filter="photography">Photography</button>
-  <button data-filter="film">Film</button>
-  <button data-filter="other">Other</button>
-</nav>
-
+    <button data-filter="all" class="active">All</button>
+    <button data-filter="photography">Photography</button>
+    <button data-filter="film">Film</button>
+    <button data-filter="other">Other</button>
+  </nav>
 
   <a href="about.html" class="about-link">About Me</a>
 </header>
@@ -32,13 +30,17 @@ const grid = document.getElementById("projectsGrid");
 
 function renderProjects(filter = "all") {
   grid.innerHTML = "";
+
   projects
     .filter(p => filter === "all" || p.type === filter)
     .forEach(project => {
       grid.innerHTML += `
         <a href="project.html?project=${encodeURIComponent(project.title)}"
-           class="project-tile">
+           class="project-tile fade-in">
           <img src="${project.thumbnail}" alt="${project.title}">
+          <div class="project-hover">
+            <span>${project.title}</span>
+          </div>
         </a>
       `;
     });
@@ -48,7 +50,9 @@ renderProjects();
 
 document.querySelectorAll(".filters button").forEach(btn => {
   btn.addEventListener("click", () => {
-    document.querySelectorAll(".filters button").forEach(b => b.classList.remove("active"));
+    document.querySelectorAll(".filters button")
+      .forEach(b => b.classList.remove("active"));
+
     btn.classList.add("active");
     renderProjects(btn.dataset.filter);
   });
