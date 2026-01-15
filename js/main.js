@@ -11,8 +11,11 @@ const modalDescription = document.getElementById("modal-description");
 const modalGallery = document.getElementById("modal-gallery");
 const modalClose = document.querySelector(".modal-close");
 
-// MODAL FUNCTIONS
+// OPEN MODAL
 function openProjectModal(project) {
+  modal.classList.remove("fade-out");
+  modal.classList.add("show", "fade-in");
+
   // Main media
   if (project.link.includes("youtube") || project.link.includes("drive")) {
     modalMain.innerHTML = `<iframe src="${project.link}" frameborder="0" allowfullscreen></iframe>`;
@@ -20,11 +23,11 @@ function openProjectModal(project) {
     modalMain.innerHTML = `<img src="${project.link}" alt="${project.title}">`;
   }
 
-  // Title + description
+  // Title & Description
   modalTitle.textContent = project.title;
   modalDescription.textContent = project.description;
 
-  // Gallery thumbnails
+  // Gallery
   modalGallery.innerHTML = "";
   project.gallery.forEach((item, index) => {
     const thumb = document.createElement("img");
@@ -41,23 +44,21 @@ function openProjectModal(project) {
     });
     modalGallery.appendChild(thumb);
   });
-
-  modal.classList.add("show");
 }
 
-// Close modal
-modalClose.addEventListener("click", () => {
-  modal.classList.remove("show");
-});
+// CLOSE MODAL
+function closeModal() {
+  modal.classList.remove("fade-in");
+  modal.classList.add("fade-out");
+  setTimeout(() => {
+    modal.classList.remove("show", "fade-out");
+  }, 300);
+}
 
-// Close modal by clicking outside window
-modal.addEventListener("click", (e) => {
-  if (e.target === modal) {
-    modal.classList.remove("show");
-  }
-});
+modalClose.addEventListener("click", closeModal);
+modal.addEventListener("click", (e) => { if(e.target === modal) closeModal(); });
 
-// RENDER PROJECTS
+// ATTACH CLICK TO PROJECTS
 function attachProjectClick() {
   document.querySelectorAll(".project-tile").forEach((tile, index) => {
     tile.addEventListener("click", (e) => {
@@ -67,6 +68,7 @@ function attachProjectClick() {
   });
 }
 
+// RENDER PROJECTS
 function renderProjects(filter = "all") {
   grid.innerHTML = "";
   grid.classList.remove("hidden");
@@ -98,7 +100,7 @@ function showFilter(filter) {
     about.classList.remove("hidden");
   } else {
     const btn = document.querySelector(`[data-filter="${filter}"]`);
-    if (btn) btn.classList.add("active");
+    if(btn) btn.classList.add("active");
     renderProjects(filter);
   }
 
@@ -111,9 +113,6 @@ aboutBtn.addEventListener("click", () => showFilter("about"));
 // LOAD ON PAGE LOAD
 window.addEventListener("load", () => {
   const hash = window.location.hash.replace('#','');
-  if(hash) {
-    showFilter(hash);
-  } else {
-    showFilter("all");
-  }
+  if(hash) showFilter(hash);
+  else showFilter("all");
 });
