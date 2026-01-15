@@ -1,52 +1,54 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>About – Aura Vilkisiute</title>
-  <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-
-<!-- TOP BAR (SAME AS INDEX) -->
 <header class="top-bar">
-  <a href="index.html">
+  <a href="#">
     <img src="assets/images/banner.png" alt="Aura Vilkisiute" class="logo-banner">
   </a>
 
   <nav class="filters">
-    <button disabled>About</button>
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="photography">Photography</button>
+    <button class="filter-btn" data-filter="film">Film</button>
+    <button class="filter-btn" data-filter="other">Other</button>
+    <button class="filter-btn" data-filter="about">About Me</button>
   </nav>
-
-  <a href="index.html" class="about-link">Portfolio</a>
 </header>
 
-<!-- ABOUT CONTENT -->
-<main class="about-container">
-  <section class="about-content">
-
-    <div class="about-text">
-      <h1>About Me</h1>
-      <p>
-        I am an interdisciplinary artist working across photography, film, and
-        visual experimentation. My work explores time, routine, and personal
-        narrative through observational and abstract forms.
-      </p>
-
-      <p>
-        Currently based in Belgium, my practice focuses on visual storytelling
-        through minimal and atmospheric compositions.
-      </p>
+<main>
+  <!-- PROJECTS -->
+  <div class="projects-grid">
+    <div class="project-tile" data-category="photography">
+      <img src="assets/images/photo1.jpg" alt="">
+      <div class="project-hover"><span>Photo 1</span></div>
     </div>
-
-    <div class="about-meta">
-      <p><strong>Fields</strong></p>
-      <p>Photography</p>
-      <p>Film</p>
-      <p>Visual Art</p>
+    <div class="project-tile" data-category="film">
+      <img src="assets/images/film1.jpg" alt="">
+      <div class="project-hover"><span>Film 1</span></div>
     </div>
+    <div class="project-tile" data-category="other">
+      <img src="assets/images/other1.jpg" alt="">
+      <div class="project-hover"><span>Other 1</span></div>
+    </div>
+    <!-- Add more projects here -->
+  </div>
 
-  </section>
+  <!-- ABOUT ME -->
+  <div class="about-container hidden">
+    <section class="about-content">
+      <div class="about-text">
+        <h1>About Me</h1>
+        <p>
+          I am an interdisciplinary artist working across photography, film, and visual experimentation. 
+          My work explores time, routine, and personal narrative through observational and abstract forms.
+        </p>
+        <p>
+          Currently based in Belgium, my practice focuses on visual storytelling through minimal and atmospheric compositions.
+        </p>
+      </div>
+      <div class="about-meta">
+        <p><strong>Fields</strong></p>
+        <p>Photography</p>
+        <p>Film</p>
+        <p>Visual Art</p>
+      </div>
+    </section>
+  </div>
 </main>
-
-</body>
-</html>
