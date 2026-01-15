@@ -101,3 +101,78 @@ window.addEventListener("load", () => {
     showFilter("all");
   }
 });
+// MODAL ELEMENTS
+const modal = document.getElementById("projectModal");
+const modalMain = document.getElementById("modal-main-media");
+const modalTitle = document.getElementById("modal-title");
+const modalDescription = document.getElementById("modal-description");
+const modalGallery = document.getElementById("modal-gallery");
+const modalClose = document.querySelector(".modal-close");
+
+// Open modal with project
+function openProjectModal(project) {
+  // Main media
+  modalMain.innerHTML = project.link.includes("youtube") || project.link.includes("drive")
+    ? `<iframe src="${project.link}" frameborder="0" allowfullscreen></iframe>`
+    : `<img src="${project.link}" alt="${project.title}">`;
+
+  // Title and description
+  modalTitle.textContent = project.title;
+  modalDescription.textContent = project.description;
+
+  // Gallery
+  modalGallery.innerHTML = "";
+  project.gallery.forEach((item, index) => {
+    const thumb = document.createElement("img");
+    thumb.src = item;
+    if (index === 0) thumb.classList.add("active");
+    thumb.addEventListener("click", () => {
+      modalGallery.querySelectorAll("img").forEach(img => img.classList.remove("active"));
+      thumb.classList.add("active");
+      if (item.includes("youtube") || item.includes("drive")) {
+        modalMain.innerHTML = `<iframe src="${item}" frameborder="0" allowfullscreen></iframe>`;
+      } else {
+        modalMain.innerHTML = `<img src="${item}" alt="${project.title}">`;
+      }
+    });
+    modalGallery.appendChild(thumb);
+  });
+
+  modal.classList.remove("hidden");
+}
+
+// Close modal
+modalClose.addEventListener("click", () => {
+  modal.classList.add("hidden");
+});
+
+// Attach click event to project tiles
+function attachProjectClick() {
+  document.querySelectorAll(".project-tile").forEach((tile, index) => {
+    tile.addEventListener("click", (e) => {
+      e.preventDefault(); // prevent following href
+      openProjectModal(projects[index]);
+    });
+  });
+}
+
+// Call after rendering projects
+function renderProjects(filter = "all") {
+  grid.innerHTML = "";
+  grid.classList.remove("hidden");
+  about.classList.add("hidden");
+
+  const filtered = projects.filter(p => filter === "all" || p.type === filter);
+  filtered.forEach(project => {
+    grid.innerHTML += `
+      <a class="project-tile fade-in" href="${project.link}">
+        <img src="${project.thumbnail}" alt="${project.title}">
+        <div class="project-hover">
+          <span>${project.title}</span>
+        </div>
+      </a>
+    `;
+  });
+
+  attachProjectClick(); // Attach modal click after rendering
+}
