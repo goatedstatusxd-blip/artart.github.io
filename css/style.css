@@ -15,14 +15,14 @@ body {
 .top-bar {
   display: flex;
   align-items: center;
-  justify-content: space-between; /* logo left, filters + about right */
+  justify-content: space-between;
   padding: 24px 32px;
   gap: 16px;
 }
 
 /* LOGO / BANNER IMAGE */
 .logo-banner {
-  height: 38px;            /* controls size */
+  height: 38px;
   width: auto;
   object-fit: contain;
   display: block;
@@ -31,7 +31,7 @@ body {
 /* FILTERS */
 .filters {
   display: flex;
-  gap: 32px;
+  gap: 16px;
 }
 
 .filters button {
@@ -42,15 +42,18 @@ body {
   padding-bottom: 4px;
 }
 
-.filters button.active {
-  border-bottom: 2px solid #000;
+/* ABOUT BUTTON */
+#about-btn {
+  margin-left: auto;
+  background: none;
+  border: none;
+  font-size: 1.1rem;
+  cursor: pointer;
 }
 
-/* ABOUT LINK */
-.about-link {
-  text-decoration: none;
-  color: #000;
-  font-size: 1.1rem;
+/* ACTIVE BUTTON */
+.filter-btn.active {
+  border-bottom: 2px solid #000;
 }
 
 /* PROJECT GRID */
@@ -63,14 +66,13 @@ body {
 
 /* PROJECT TILE */
 .project-tile {
-  position: relative;                 /* REQUIRED for hover overlay */
+  position: relative;
   width: 100%;
   aspect-ratio: 4 / 3;
   overflow: hidden;
   display: block;
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
-
 
 .project-tile img {
   width: 100%;
@@ -82,7 +84,8 @@ body {
 .project-tile:hover img {
   transform: scale(1.03);
 }
-/* PROJECT HOVER TITLE */
+
+/* PROJECT HOVER */
 .project-hover {
   position: absolute;
   inset: 0;
@@ -92,78 +95,33 @@ body {
   justify-content: center;
   opacity: 0;
   transition: opacity 0.3s ease;
-  pointer-events: none; /* keeps click behavior clean */
+  pointer-events: none;
 }
 
 .project-hover span {
-  color: white;
-  font-size: 18px;
-  letter-spacing: 0.04em;
-  text-align: center;
+  color: #fff;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .project-tile:hover .project-hover {
   opacity: 1;
 }
 
-
-/* RESPONSIVE */
-@media (max-width: 900px) {
-  .projects-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 600px) {
-  .projects-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .top-bar {
-    grid-template-columns: 1fr;
-    gap: 16px;
-  }
-
-  .filters {
-    gap: 16px;
-  }
-}
-
-/* TRANSITIONS */
-.fade-in {
-  opacity: 0;
-  transform: scale(0.97);
-  animation: fadeIn 0.4s ease forwards;
-}
-
-.fade-out {
-  opacity: 0;
-  transform: scale(0.97);
-  transition: all 0.25s ease;
-}
-
-@keyframes fadeIn {
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-/* ABOUT PAGE – MATCH INDEX LAYOUT */
+/* ABOUT SECTION */
 .about-container {
-  padding: 32px;               /* SAME as projects-grid */
+  padding: 32px;
 }
 
 .about-content {
-  max-width: none;             /* remove boxed feeling */
-  width: 100%;
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* SAME grid logic */
+  grid-template-columns: repeat(3, 1fr);
   gap: 32px;
 }
 
 .about-text {
-  grid-column: span 2;         /* text takes 2 columns */
+  grid-column: span 2;
   font-size: 18px;
   line-height: 1.6;
 }
@@ -178,49 +136,30 @@ body {
   opacity: 0.7;
 }
 
-/* HIDE SECTIONS */
+/* HIDE ELEMENTS */
 .hidden {
   display: none;
 }
 
-/* PROJECT HOVER TITLE */
-.project-hover {
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,0.55);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  transition: opacity 0.3s ease;
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .projects-grid, .about-content {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
-.project-hover span {
-  color: #fff;
-  font-size: 1.1rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
+@media (max-width: 600px) {
+  .projects-grid, .about-content {
+    grid-template-columns: 1fr;
+  }
 
-.project-tile {
-  position: relative;
-}
+  .top-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
 
-.project-tile:hover .project-hover {
-  opacity: 1;
-}
-
-.hidden {
-  display: none;
-}
-#about-btn {
-  margin-left: auto; /* pushes it to the far right */
-  background: none;
-  border: none;
-  font-size: 1.1rem;
-  cursor: pointer;
-}
-
-.filter-btn.active {
-  border-bottom: 2px solid #000;
+  .filters {
+    gap: 16px;
+  }
 }
