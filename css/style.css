@@ -209,3 +209,7 @@ body {
 .project-tile:hover .project-hover {
   opacity: 1;
 }
+
+.hidden {
+  display: none;
+}
